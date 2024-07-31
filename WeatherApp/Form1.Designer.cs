@@ -29,6 +29,11 @@
         private void InitializeComponent()
         {
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+<<<<<<< Updated upstream
+=======
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+>>>>>>> Stashed changes
             this.SuspendLayout();
             // 
             // webBrowser1
@@ -40,11 +45,37 @@
             this.webBrowser1.Size = new System.Drawing.Size(1025, 435);
             this.webBrowser1.TabIndex = 0;
             // 
+<<<<<<< Updated upstream
+=======
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(307, 104);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(26, 16);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Tin";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(361, 103);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(44, 16);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "label2";
+            // 
+>>>>>>> Stashed changes
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1025, 435);
+<<<<<<< Updated upstream
+=======
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+>>>>>>> Stashed changes
             this.Controls.Add(this.webBrowser1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -55,6 +86,11 @@
         #endregion
 
         private System.Windows.Forms.WebBrowser webBrowser1;
+<<<<<<< Updated upstream
+=======
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+>>>>>>> Stashed changes
     }
 }
 
