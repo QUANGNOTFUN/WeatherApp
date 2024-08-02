@@ -29,8 +29,10 @@
         private void InitializeComponent()
         {
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+            this.cityTextBox = new System.Windows.Forms.TextBox();
+            this.searchButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.weatherListBox = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // webBrowser1
@@ -42,31 +44,50 @@
             this.webBrowser1.Size = new System.Drawing.Size(1025, 435);
             this.webBrowser1.TabIndex = 0;
             // 
+            // cityTextBox
+            // 
+            this.cityTextBox.Location = new System.Drawing.Point(335, 50);
+            this.cityTextBox.Name = "cityTextBox";
+            this.cityTextBox.Size = new System.Drawing.Size(100, 22);
+            this.cityTextBox.TabIndex = 3;
+            // 
+            // searchButton
+            // 
+            this.searchButton.Location = new System.Drawing.Point(460, 48);
+            this.searchButton.Name = "searchButton";
+            this.searchButton.Size = new System.Drawing.Size(75, 23);
+            this.searchButton.TabIndex = 4;
+            this.searchButton.Text = "Tìm";
+            this.searchButton.UseVisualStyleBackColor = true;
+            this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(307, 104);
+            this.label1.Location = new System.Drawing.Point(238, 53);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(26, 16);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Tin";
+            this.label1.Size = new System.Drawing.Size(74, 16);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Thành phố:";
             // 
-            // label2
+            // weatherListBox
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(554, 83);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 16);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "label2";
+            this.weatherListBox.FormattingEnabled = true;
+            this.weatherListBox.ItemHeight = 16;
+            this.weatherListBox.Location = new System.Drawing.Point(241, 102);
+            this.weatherListBox.Name = "weatherListBox";
+            this.weatherListBox.Size = new System.Drawing.Size(318, 292);
+            this.weatherListBox.TabIndex = 6;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1025, 435);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.weatherListBox);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.searchButton);
+            this.Controls.Add(this.cityTextBox);
             this.Controls.Add(this.webBrowser1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -78,7 +99,9 @@
         #endregion
 
         private System.Windows.Forms.WebBrowser webBrowser1;
+        private System.Windows.Forms.TextBox cityTextBox;
+        private System.Windows.Forms.Button searchButton;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ListBox weatherListBox;
     }
 }
