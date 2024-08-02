@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+
             this.searchButton = new System.Windows.Forms.Button();
             this.cityTextBox = new System.Windows.Forms.TextBox();
             this.weatherListBox = new System.Windows.Forms.ListBox();
+
             this.SuspendLayout();
             // 
             // searchButton
@@ -59,14 +61,25 @@
             this.weatherListBox.Size = new System.Drawing.Size(322, 212);
             this.weatherListBox.TabIndex = 2;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(554, 83);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(44, 16);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "label2";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1025, 435);
+
             this.Controls.Add(this.weatherListBox);
             this.Controls.Add(this.cityTextBox);
             this.Controls.Add(this.searchButton);
+
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -75,10 +88,9 @@
         }
 
         #endregion
-
         private System.Windows.Forms.Button searchButton;
         private System.Windows.Forms.TextBox cityTextBox;
         private System.Windows.Forms.ListBox weatherListBox;
+
     }
 }
-
