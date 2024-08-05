@@ -62,7 +62,7 @@
             this.weatherListBox.ItemHeight = 16;
             this.weatherListBox.Location = new System.Drawing.Point(139, 240);
             this.weatherListBox.Name = "weatherListBox";
-            this.weatherListBox.Size = new System.Drawing.Size(520, 452);
+            this.weatherListBox.Size = new System.Drawing.Size(541, 276);
             this.weatherListBox.TabIndex = 5;
             // 
             // backButton
@@ -97,7 +97,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 751);
+            this.ClientSize = new System.Drawing.Size(822, 553);
             this.Controls.Add(this.cityNameLabel);
             this.Controls.Add(this.currentDateLabel);
             this.Controls.Add(this.backButton);
