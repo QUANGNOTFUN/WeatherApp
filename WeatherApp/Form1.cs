@@ -79,5 +79,20 @@ namespace WeatherApp
                 }
             }
         }
+
+        private void detailsButton_Click(object sender, EventArgs e)
+        {
+            string cityName = cityTextBox.Text;
+            if (!string.IsNullOrEmpty(cityName))
+            {
+                // Khởi tạo Form2 và truyền tên thành phố
+                Form2 form2 = new Form2(cityName);
+                form2.Show();
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng nhập tên thành phố.");
+            }
+        }
     }
 }

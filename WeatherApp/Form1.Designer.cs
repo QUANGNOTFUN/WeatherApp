@@ -33,6 +33,7 @@
             this.searchButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.weatherListBox = new System.Windows.Forms.ListBox();
+            this.detailsButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // webBrowser1
@@ -79,11 +80,22 @@
             this.weatherListBox.Size = new System.Drawing.Size(318, 292);
             this.weatherListBox.TabIndex = 6;
             // 
+            // detailsButton
+            // 
+            this.detailsButton.Location = new System.Drawing.Point(360, 400);
+            this.detailsButton.Name = "detailsButton";
+            this.detailsButton.Size = new System.Drawing.Size(118, 23);
+            this.detailsButton.TabIndex = 7;
+            this.detailsButton.Text = "Xem chi tiết";
+            this.detailsButton.UseVisualStyleBackColor = true;
+            this.detailsButton.Click += new System.EventHandler(this.detailsButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1025, 435);
+            this.Controls.Add(this.detailsButton);
             this.Controls.Add(this.weatherListBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.searchButton);
@@ -103,5 +115,6 @@
         private System.Windows.Forms.Button searchButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox weatherListBox;
+        private System.Windows.Forms.Button detailsButton;
     }
 }
