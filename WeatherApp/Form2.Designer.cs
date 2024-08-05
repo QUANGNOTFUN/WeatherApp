@@ -30,9 +30,10 @@
         {
             this.previousDayButton = new System.Windows.Forms.Button();
             this.nextDayButton = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.currentDateLabel = new System.Windows.Forms.Label();
             this.weatherListBox = new System.Windows.Forms.ListBox();
+            this.backButton = new System.Windows.Forms.Button();
+            this.currentDateLabel = new System.Windows.Forms.Label();
+            this.cityNameLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // previousDayButton
@@ -55,24 +56,6 @@
             this.nextDayButton.UseVisualStyleBackColor = true;
             this.nextDayButton.Click += new System.EventHandler(this.nextDayButton_Click);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(367, 31);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(44, 16);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "label2";
-            // 
-            // currentDateLabel
-            // 
-            this.currentDateLabel.AutoSize = true;
-            this.currentDateLabel.Location = new System.Drawing.Point(272, 94);
-            this.currentDateLabel.Name = "currentDateLabel";
-            this.currentDateLabel.Size = new System.Drawing.Size(44, 16);
-            this.currentDateLabel.TabIndex = 4;
-            this.currentDateLabel.Text = "label1";
-            // 
             // weatherListBox
             // 
             this.weatherListBox.FormattingEnabled = true;
@@ -82,14 +65,43 @@
             this.weatherListBox.Size = new System.Drawing.Size(520, 452);
             this.weatherListBox.TabIndex = 5;
             // 
+            // backButton
+            // 
+            this.backButton.Location = new System.Drawing.Point(31, 23);
+            this.backButton.Name = "backButton";
+            this.backButton.Size = new System.Drawing.Size(75, 23);
+            this.backButton.TabIndex = 6;
+            this.backButton.Text = "Back";
+            this.backButton.UseVisualStyleBackColor = true;
+            this.backButton.Click += new System.EventHandler(this.backButton_Click);
+            // 
+            // currentDateLabel
+            // 
+            this.currentDateLabel.AutoSize = true;
+            this.currentDateLabel.Location = new System.Drawing.Point(259, 93);
+            this.currentDateLabel.Name = "currentDateLabel";
+            this.currentDateLabel.Size = new System.Drawing.Size(44, 16);
+            this.currentDateLabel.TabIndex = 9;
+            this.currentDateLabel.Text = "label1";
+            // 
+            // cityNameLabel
+            // 
+            this.cityNameLabel.AutoSize = true;
+            this.cityNameLabel.Location = new System.Drawing.Point(315, 29);
+            this.cityNameLabel.Name = "cityNameLabel";
+            this.cityNameLabel.Size = new System.Drawing.Size(44, 16);
+            this.cityNameLabel.TabIndex = 10;
+            this.cityNameLabel.Text = "label2";
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 751);
-            this.Controls.Add(this.weatherListBox);
+            this.Controls.Add(this.cityNameLabel);
             this.Controls.Add(this.currentDateLabel);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.backButton);
+            this.Controls.Add(this.weatherListBox);
             this.Controls.Add(this.nextDayButton);
             this.Controls.Add(this.previousDayButton);
             this.Name = "Form2";
@@ -104,8 +116,9 @@
 
         private System.Windows.Forms.Button previousDayButton;
         private System.Windows.Forms.Button nextDayButton;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label currentDateLabel;
         private System.Windows.Forms.ListBox weatherListBox;
+        private System.Windows.Forms.Button backButton;
+        private System.Windows.Forms.Label currentDateLabel;
+        private System.Windows.Forms.Label cityNameLabel;
     }
 }

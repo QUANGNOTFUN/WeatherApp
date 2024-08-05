@@ -11,16 +11,20 @@ namespace WeatherApp
         private DateTime displayedDate;
         private DateTime endDate;
         private int currentDayIndex = 0;
+        private string cityName;
 
-        public Form2()
+        public Form2(string cityName)
         {
             InitializeComponent();
+            this.cityName = cityName; // Nhận tên thành phố từ Form1
             displayedDate = DateTime.Today;
             endDate = displayedDate.AddDays(6); // 7 ngày liên tiếp từ ngày hôm nay
         }
 
         private void Form2_Load(object sender, EventArgs e)
         {
+            cityNameLabel.Text = $"Thành phố: {cityName}";
+
             UpdateDateDisplay();
             UpdateWeatherList();
         }
@@ -60,7 +64,6 @@ namespace WeatherApp
 
         private async Task GetWeatherForecast(DateTime date)
         {
-            string cityName = "Long An"; // Thay đổi tên thành phố nếu cần
             string apiKey = "62800263f5dd019d92880a8782a73dab";
             string url = $"https://api.openweathermap.org/data/2.5/forecast?q={cityName}&appid={apiKey}";
 
@@ -95,6 +98,12 @@ namespace WeatherApp
                     MessageBox.Show("Không tìm thấy thành phố hoặc có lỗi xảy ra.");
                 }
             }
+        }
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            // Đóng Form2 và hiển thị Form1
+            this.Close();
         }
     }
 }
