@@ -30,10 +30,10 @@
         {
             this.previousDayButton = new System.Windows.Forms.Button();
             this.nextDayButton = new System.Windows.Forms.Button();
-            this.weatherListBox = new System.Windows.Forms.ListBox();
             this.backButton = new System.Windows.Forms.Button();
             this.currentDateLabel = new System.Windows.Forms.Label();
             this.cityNameLabel = new System.Windows.Forms.Label();
+            this.weatherFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.SuspendLayout();
             // 
             // previousDayButton
@@ -55,15 +55,6 @@
             this.nextDayButton.Text = "Next day";
             this.nextDayButton.UseVisualStyleBackColor = true;
             this.nextDayButton.Click += new System.EventHandler(this.nextDayButton_Click);
-            // 
-            // weatherListBox
-            // 
-            this.weatherListBox.FormattingEnabled = true;
-            this.weatherListBox.ItemHeight = 16;
-            this.weatherListBox.Location = new System.Drawing.Point(139, 240);
-            this.weatherListBox.Name = "weatherListBox";
-            this.weatherListBox.Size = new System.Drawing.Size(541, 276);
-            this.weatherListBox.TabIndex = 5;
             // 
             // backButton
             // 
@@ -93,17 +84,32 @@
             this.cityNameLabel.TabIndex = 10;
             this.cityNameLabel.Text = "label2";
             // 
+            // weatherFlowLayoutPanel
+            // 
+            this.weatherFlowLayoutPanel.BackColor = System.Drawing.Color.White;
+            this.weatherFlowLayoutPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.weatherFlowLayoutPanel.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.weatherFlowLayoutPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.weatherFlowLayoutPanel.Location = new System.Drawing.Point(90, 337);
+            this.weatherFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
+            this.weatherFlowLayoutPanel.Name = "weatherFlowLayoutPanel";
+            this.weatherFlowLayoutPanel.Size = new System.Drawing.Size(1000, 427);
+            this.weatherFlowLayoutPanel.TabIndex = 12;
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(822, 553);
+            this.BackColor = System.Drawing.SystemColors.Window;
+            this.ClientSize = new System.Drawing.Size(1182, 807);
+            this.Controls.Add(this.weatherFlowLayoutPanel);
             this.Controls.Add(this.cityNameLabel);
             this.Controls.Add(this.currentDateLabel);
             this.Controls.Add(this.backButton);
-            this.Controls.Add(this.weatherListBox);
             this.Controls.Add(this.nextDayButton);
             this.Controls.Add(this.previousDayButton);
+            this.MaximumSize = new System.Drawing.Size(1200, 854);
+            this.MinimumSize = new System.Drawing.Size(900, 640);
             this.Name = "Form2";
             this.Text = "Form2";
             this.Load += new System.EventHandler(this.Form2_Load);
@@ -116,9 +122,9 @@
 
         private System.Windows.Forms.Button previousDayButton;
         private System.Windows.Forms.Button nextDayButton;
-        private System.Windows.Forms.ListBox weatherListBox;
         private System.Windows.Forms.Button backButton;
         private System.Windows.Forms.Label currentDateLabel;
         private System.Windows.Forms.Label cityNameLabel;
+        private System.Windows.Forms.FlowLayoutPanel weatherFlowLayoutPanel;
     }
 }
