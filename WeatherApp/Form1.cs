@@ -4,6 +4,8 @@ using System.Windows.Forms;
 using System.Net.Http;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
+using System.IO;
+using System.Drawing;
 
 namespace WeatherApp
 {
@@ -39,38 +41,49 @@ namespace WeatherApp
 
                     weatherListBox.Items.Clear();
                     DateTime today = DateTime.Now.Date;
-                    DateTime endDay = today.AddDays(3);  // Ngày kết thúc
-                    HashSet<DateTime> displayedDates = new HashSet<DateTime>();
+                    bool todayForecastFound = false;
 
                     foreach (JObject forecast in forecastList)
                     {
                         DateTime forecastTime = DateTime.Parse(forecast["dt_txt"].ToString());
 
-                        // Kiểm tra xem dự đoán có nằm trong khoảng từ hôm nay đến ba ngày tới không
-                        if (forecastTime.Date >= today && forecastTime.Date <= endDay)
+                        // Kiểm tra xem dự đoán có phải là hôm nay không
+                        if (forecastTime.Date == today)
                         {
-                            if (!displayedDates.Contains(forecastTime.Date))
+                            double temperature = double.Parse(forecast["main"]["temp"].ToString()) - 273.15;
+                            string weatherDescription = forecast["weather"][0]["description"].ToString();
+                            string weatherIconCode = forecast["weather"][0]["icon"].ToString();
+                            double humidity = double.Parse(forecast["main"]["humidity"].ToString());
+                            double pressure = double.Parse(forecast["main"]["pressure"].ToString());
+                            double windSpeed = double.Parse(forecast["wind"]["speed"].ToString());
+
+                            // Cập nhật thông tin thời tiết cho ngày hôm nay
+                            weatherListBox.Items.Add($"Ngày hôm nay:");
+                            weatherListBox.Items.Add($"Nhiệt độ: {temperature:F1}°C");
+                            weatherListBox.Items.Add($"Mô tả thời tiết: {weatherDescription}");
+                            weatherListBox.Items.Add($"Độ ẩm: {humidity:F1}%");
+                            weatherListBox.Items.Add($"Áp suất khí quyển: {pressure} hPa");
+                            weatherListBox.Items.Add($"Tốc độ gió: {windSpeed:F1} m/s");
+
+                            // Cập nhật hình ảnh thời tiết
+                            string iconUrl = $"http://openweathermap.org/img/wn/{weatherIconCode}.png";
+                            using (HttpClient iconClient = new HttpClient())
                             {
-                                double temperature = double.Parse(forecast["main"]["temp"].ToString()) - 273.15;
-                                string weatherDescription = forecast["weather"][0]["description"].ToString();
-
-                                weatherListBox.Items.Add($"Ngày {forecastTime.ToShortDateString()}:");
-                                weatherListBox.Items.Add($"Nhiệt độ: {temperature:F1}°C");
-                                weatherListBox.Items.Add($"Mô tả thời tiết: {weatherDescription}");
-                                weatherListBox.Items.Add("");
-
-                                displayedDates.Add(forecastTime.Date);
+                                byte[] iconData = await iconClient.GetByteArrayAsync(iconUrl);
+                                using (MemoryStream ms = new MemoryStream(iconData))
+                                {
+                                    picIcon.Image = Image.FromStream(ms);
+                                }
                             }
 
-                            // Dừng vòng lặp khi đã hiển thị đủ 4 ngày
-                            if (displayedDates.Count >= 4)
-                                break;
+                            todayForecastFound = true;
+                            break; // Ngừng vòng lặp khi đã hiển thị thông tin cho ngày hôm nay
                         }
                     }
 
-                    if (displayedDates.Count == 0)
+                    if (!todayForecastFound)
                     {
-                        weatherListBox.Items.Add("Không có dự đoán thời tiết nào.");
+                        weatherListBox.Items.Add("Không có dự đoán thời tiết cho ngày hôm nay.");
                     }
                 }
                 else
@@ -78,6 +91,7 @@ namespace WeatherApp
                     MessageBox.Show("Không tìm thấy thành phố hoặc có lỗi xảy ra.");
                 }
             }
+
         }
 
         private void detailsButton_Click(object sender, EventArgs e)

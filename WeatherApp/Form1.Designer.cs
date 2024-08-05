@@ -33,6 +33,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.weatherListBox = new System.Windows.Forms.ListBox();
             this.detailsButton = new System.Windows.Forms.Button();
+            this.picIcon = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.picIcon)).BeginInit();
             this.SuspendLayout();
             // 
             // cityTextBox
@@ -80,11 +82,21 @@
             this.detailsButton.UseVisualStyleBackColor = true;
             this.detailsButton.Click += new System.EventHandler(this.detailsButton_Click);
             // 
+            // picIcon
+            // 
+            this.picIcon.Location = new System.Drawing.Point(135, 102);
+            this.picIcon.Name = "picIcon";
+            this.picIcon.Size = new System.Drawing.Size(100, 71);
+            this.picIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picIcon.TabIndex = 8;
+            this.picIcon.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(822, 553);
+            this.Controls.Add(this.picIcon);
             this.Controls.Add(this.detailsButton);
             this.Controls.Add(this.weatherListBox);
             this.Controls.Add(this.label1);
@@ -92,6 +104,7 @@
             this.Controls.Add(this.cityTextBox);
             this.Name = "Form1";
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.picIcon)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -103,5 +116,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox weatherListBox;
         private System.Windows.Forms.Button detailsButton;
+        private System.Windows.Forms.PictureBox picIcon;
     }
 }
