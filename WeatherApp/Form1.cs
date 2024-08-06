@@ -6,6 +6,7 @@ using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.IO;
 using System.Drawing;
+using System.Linq;
 
 namespace WeatherApp
 {
@@ -18,10 +19,69 @@ namespace WeatherApp
 
         private async void searchButton_Click(object sender, EventArgs e)
         {
-            string cityName = cityTextBox.Text;
+            // Lấy tên thành phố được chọn từ ComboBox
+            string cityName = cityComboBox.Text;
             if (!string.IsNullOrEmpty(cityName))
             {
                 await GetWeatherForecast(cityName);
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn thành phố từ danh sách.");
+            }
+        }
+
+        private string[] cities = new string[]
+        {
+            "An Giang", "Bà Rịa - Vũng Tàu", "Bắc Giang", "Bắc Kạn", "Bạc Liêu",
+            "Bắc Ninh", "Bến Tre", "Bình Định", "Bình Dương", "Bình Phước",
+            "Bình Thuận", "Cà Mau", "Cần Thơ", "Cao Bằng", "Đà Nẵng",
+            "Đắk Lắk", "Đắk Nông", "Điện Biên", "Đồng Nai", "Đồng Tháp",
+            "Gia Lai", "Hà Giang", "Hà Nam", "Hà Nội", "Hà Tĩnh",
+            "Hải Dương", "Hải Phòng", "Hậu Giang", "Hòa Bình", "Hưng Yên",
+            "Khánh Hòa", "Kiên Giang", "Kon Tum", "Lai Châu", "Lâm Đồng",
+            "Lạng Sơn", "Lào Cai", "Long An", "Nam Định", "Nghệ An",
+            "Ninh Bình", "Ninh Thuận", "Phú Thọ", "Phú Yên", "Quảng Bình",
+            "Quảng Nam", "Quảng Ngãi", "Quảng Ninh", "Quảng Trị", "Sóc Trăng",
+            "Sơn La", "Tây Ninh", "Thái Bình", "Thái Nguyên", "Thanh Hóa",
+            "Thừa Thiên Huế", "Tiền Giang", "TP. Hồ Chí Minh", "Trà Vinh", "Tuyên Quang",
+            "Vĩnh Long", "Vĩnh Phúc", "Yên Bái"
+        };
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            // Khởi tạo danh sách ban đầu cho ComboBox
+            cityComboBox.Items.AddRange(cities);
+        }
+
+        private void cityTextBox_TextChanged(object sender, EventArgs e)
+        {
+            // Lấy từ khóa tìm kiếm từ TextBox
+            string searchKeyword = cityTextBox.Text.ToLower();
+
+            // Lọc danh sách các tỉnh thành dựa trên từ khóa tìm kiếm
+            var filteredCities = cities.Where(city => city.ToLower().Contains(searchKeyword)).ToArray();
+
+            // Cập nhật ComboBox với danh sách đã lọc
+            cityComboBox.Items.Clear();
+            cityComboBox.Items.AddRange(filteredCities);
+
+            // Reset giá trị của ComboBox nếu không còn mục nào phù hợp
+            if (!filteredCities.Contains(cityComboBox.Text))
+            {
+                cityComboBox.Text = string.Empty;
+            }
+        }
+
+        private async void cityComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Lấy tên thành phố được chọn từ ComboBox
+            string selectedCity = cityComboBox.SelectedItem?.ToString();
+
+            // Tìm kiếm dự đoán thời tiết cho thành phố được chọn
+            if (!string.IsNullOrEmpty(selectedCity))
+            {
+                await GetWeatherForecast(selectedCity);
             }
         }
 
@@ -91,7 +151,6 @@ namespace WeatherApp
                     MessageBox.Show("Không tìm thấy thành phố hoặc có lỗi xảy ra.");
                 }
             }
-
         }
 
         private void detailsButton_Click(object sender, EventArgs e)

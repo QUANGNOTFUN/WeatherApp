@@ -29,27 +29,20 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.cityTextBox = new System.Windows.Forms.TextBox();
             this.searchButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.weatherListBox = new System.Windows.Forms.ListBox();
             this.detailsButton = new System.Windows.Forms.Button();
             this.picIcon = new System.Windows.Forms.PictureBox();
+            this.cityComboBox = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.picIcon)).BeginInit();
             this.SuspendLayout();
             // 
-            // cityTextBox
-            // 
-            this.cityTextBox.Location = new System.Drawing.Point(335, 50);
-            this.cityTextBox.Name = "cityTextBox";
-            this.cityTextBox.Size = new System.Drawing.Size(100, 22);
-            this.cityTextBox.TabIndex = 3;
-            // 
             // searchButton
             // 
-            this.searchButton.Location = new System.Drawing.Point(460, 48);
+            this.searchButton.Location = new System.Drawing.Point(720, 52);
             this.searchButton.Name = "searchButton";
-            this.searchButton.Size = new System.Drawing.Size(75, 23);
+            this.searchButton.Size = new System.Drawing.Size(77, 24);
             this.searchButton.TabIndex = 4;
             this.searchButton.Text = "Tìm";
             this.searchButton.UseVisualStyleBackColor = true;
@@ -58,9 +51,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(238, 53);
+            this.label1.Location = new System.Drawing.Point(346, 52);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(74, 16);
+            this.label1.Padding = new System.Windows.Forms.Padding(4);
+            this.label1.Size = new System.Drawing.Size(82, 24);
             this.label1.TabIndex = 5;
             this.label1.Text = "Thành phố:";
             // 
@@ -68,14 +62,14 @@
             // 
             this.weatherListBox.FormattingEnabled = true;
             this.weatherListBox.ItemHeight = 16;
-            this.weatherListBox.Location = new System.Drawing.Point(269, 102);
+            this.weatherListBox.Location = new System.Drawing.Point(458, 116);
             this.weatherListBox.Name = "weatherListBox";
             this.weatherListBox.Size = new System.Drawing.Size(318, 292);
             this.weatherListBox.TabIndex = 6;
             // 
             // detailsButton
             // 
-            this.detailsButton.Location = new System.Drawing.Point(335, 423);
+            this.detailsButton.Location = new System.Drawing.Point(561, 431);
             this.detailsButton.Name = "detailsButton";
             this.detailsButton.Size = new System.Drawing.Size(118, 23);
             this.detailsButton.TabIndex = 7;
@@ -85,12 +79,22 @@
             // 
             // picIcon
             // 
-            this.picIcon.Location = new System.Drawing.Point(135, 102);
+            this.picIcon.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.picIcon.Location = new System.Drawing.Point(328, 126);
             this.picIcon.Name = "picIcon";
             this.picIcon.Size = new System.Drawing.Size(100, 71);
             this.picIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picIcon.TabIndex = 8;
             this.picIcon.TabStop = false;
+            // 
+            // cityComboBox
+            // 
+            this.cityComboBox.FormattingEnabled = true;
+            this.cityComboBox.Location = new System.Drawing.Point(458, 52);
+            this.cityComboBox.Name = "cityComboBox";
+            this.cityComboBox.Size = new System.Drawing.Size(224, 24);
+            this.cityComboBox.TabIndex = 9;
+            this.cityComboBox.SelectedIndexChanged += new System.EventHandler(this.cityComboBox_SelectedIndexChanged);
             // 
             // Form1
             // 
@@ -99,19 +103,20 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.HighlightText;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.ClientSize = new System.Drawing.Size(822, 553);
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(1182, 807);
+            this.Controls.Add(this.cityComboBox);
             this.Controls.Add(this.picIcon);
             this.Controls.Add(this.detailsButton);
             this.Controls.Add(this.weatherListBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.searchButton);
-            this.Controls.Add(this.cityTextBox);
             this.Cursor = System.Windows.Forms.Cursors.SizeAll;
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picIcon)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -119,11 +124,11 @@
         }
 
         #endregion
-        private System.Windows.Forms.TextBox cityTextBox;
         private System.Windows.Forms.Button searchButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ListBox weatherListBox;
         private System.Windows.Forms.Button detailsButton;
         private System.Windows.Forms.PictureBox picIcon;
+        private System.Windows.Forms.ComboBox cityComboBox;
     }
 }
