@@ -79,7 +79,7 @@
             // 
             // picIcon
             // 
-            this.picIcon.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.picIcon.BackColor = System.Drawing.Color.Transparent;
             this.picIcon.Location = new System.Drawing.Point(328, 126);
             this.picIcon.Name = "picIcon";
             this.picIcon.Size = new System.Drawing.Size(100, 71);
@@ -94,7 +94,6 @@
             this.cityComboBox.Name = "cityComboBox";
             this.cityComboBox.Size = new System.Drawing.Size(224, 24);
             this.cityComboBox.TabIndex = 9;
-            this.cityComboBox.SelectedIndexChanged += new System.EventHandler(this.cityComboBox_SelectedIndexChanged);
             // 
             // Form1
             // 
