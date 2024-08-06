@@ -20,10 +20,10 @@ namespace WeatherApp
         private async void searchButton_Click(object sender, EventArgs e)
         {
             // Lấy tên thành phố được chọn từ ComboBox
-            string cityName = cityComboBox.Text;
-            if (!string.IsNullOrEmpty(cityName))
+            string selectedCity = cityComboBox.SelectedItem?.ToString(); ;
+            if (!string.IsNullOrEmpty(selectedCity))
             {
-                await GetWeatherForecast(cityName);
+                await GetWeatherForecast(selectedCity);
             }
             else
             {
@@ -52,37 +52,6 @@ namespace WeatherApp
         {
             // Khởi tạo danh sách ban đầu cho ComboBox
             cityComboBox.Items.AddRange(cities);
-        }
-
-        private void cityTextBox_TextChanged(object sender, EventArgs e)
-        {
-            // Lấy từ khóa tìm kiếm từ TextBox
-            string searchKeyword = cityTextBox.Text.ToLower();
-
-            // Lọc danh sách các tỉnh thành dựa trên từ khóa tìm kiếm
-            var filteredCities = cities.Where(city => city.ToLower().Contains(searchKeyword)).ToArray();
-
-            // Cập nhật ComboBox với danh sách đã lọc
-            cityComboBox.Items.Clear();
-            cityComboBox.Items.AddRange(filteredCities);
-
-            // Reset giá trị của ComboBox nếu không còn mục nào phù hợp
-            if (!filteredCities.Contains(cityComboBox.Text))
-            {
-                cityComboBox.Text = string.Empty;
-            }
-        }
-
-        private async void cityComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            // Lấy tên thành phố được chọn từ ComboBox
-            string selectedCity = cityComboBox.SelectedItem?.ToString();
-
-            // Tìm kiếm dự đoán thời tiết cho thành phố được chọn
-            if (!string.IsNullOrEmpty(selectedCity))
-            {
-                await GetWeatherForecast(selectedCity);
-            }
         }
 
         private async Task GetWeatherForecast(string cityName)
@@ -155,7 +124,7 @@ namespace WeatherApp
 
         private void detailsButton_Click(object sender, EventArgs e)
         {
-            string cityName = cityTextBox.Text;
+            string cityName = cityComboBox.SelectedItem?.ToString(); ;
             if (!string.IsNullOrEmpty(cityName))
             {
                 // Khởi tạo Form2 và truyền tên thành phố
