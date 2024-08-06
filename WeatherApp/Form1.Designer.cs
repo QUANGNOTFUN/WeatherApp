@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.cityTextBox = new System.Windows.Forms.TextBox();
             this.searchButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -67,14 +68,14 @@
             // 
             this.weatherListBox.FormattingEnabled = true;
             this.weatherListBox.ItemHeight = 16;
-            this.weatherListBox.Location = new System.Drawing.Point(241, 102);
+            this.weatherListBox.Location = new System.Drawing.Point(269, 102);
             this.weatherListBox.Name = "weatherListBox";
             this.weatherListBox.Size = new System.Drawing.Size(318, 292);
             this.weatherListBox.TabIndex = 6;
             // 
             // detailsButton
             // 
-            this.detailsButton.Location = new System.Drawing.Point(360, 400);
+            this.detailsButton.Location = new System.Drawing.Point(335, 423);
             this.detailsButton.Name = "detailsButton";
             this.detailsButton.Size = new System.Drawing.Size(118, 23);
             this.detailsButton.TabIndex = 7;
@@ -95,6 +96,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(822, 553);
             this.Controls.Add(this.picIcon);
             this.Controls.Add(this.detailsButton);
@@ -102,6 +107,9 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.searchButton);
             this.Controls.Add(this.cityTextBox);
+            this.Cursor = System.Windows.Forms.Cursors.SizeAll;
+            this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.picIcon)).EndInit();
