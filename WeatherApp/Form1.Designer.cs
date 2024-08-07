@@ -69,7 +69,7 @@
             // 
             // detailsButton
             // 
-            this.detailsButton.Location = new System.Drawing.Point(550, 466);
+            this.detailsButton.Location = new System.Drawing.Point(537, 442);
             this.detailsButton.Name = "detailsButton";
             this.detailsButton.Size = new System.Drawing.Size(118, 23);
             this.detailsButton.TabIndex = 7;
@@ -205,7 +205,7 @@
             this.BackColor = System.Drawing.SystemColors.HighlightText;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1182, 807);
+            this.ClientSize = new System.Drawing.Size(1182, 498);
             this.Controls.Add(this.gust);
             this.Controls.Add(this.rain);
             this.Controls.Add(this.label4);
