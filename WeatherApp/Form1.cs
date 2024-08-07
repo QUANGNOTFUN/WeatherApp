@@ -6,7 +6,8 @@ using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.IO;
 using System.Drawing;
-using System.Linq; 
+using System.Linq;
+using System.Threading;
 
 
 
@@ -21,17 +22,43 @@ namespace WeatherApp
 
         private async void searchButton_Click(object sender, EventArgs e)
         {
-            // Lấy tên thành phố được chọn từ ComboBox
-            string selectedCity = cityComboBox.SelectedItem?.ToString(); ;
+            string selectedCity = cityComboBox.SelectedItem?.ToString();
             if (!string.IsNullOrEmpty(selectedCity))
             {
-                await GetWeatherForecast(selectedCity);
+                using (CancellationTokenSource cts = new CancellationTokenSource())
+                {
+                    try
+                    {
+                        await GetWeatherForecast(selectedCity, cts.Token);
+                    }
+                    catch (OperationCanceledException)
+                    {
+                        MessageBox.Show("Yêu cầu bị hủy.");
+                    }
+                }
             }
             else
             {
                 MessageBox.Show("Vui lòng chọn thành phố từ danh sách.");
             }
         }
+
+
+        private Dictionary<string, string> weatherDescriptions = new Dictionary<string, string>
+        {
+            {"clear sky", "Trời quang"},
+            {"few clouds", "Ít mây"},
+            {"scattered clouds", "Mây rải rác"},
+            {"broken clouds", "Mây nhiều"},
+            {"shower rain", "Mưa rào"},
+            {"rain", "Mưa"},
+            {"thunderstorm", "Dông"},
+            {"snow", "Tuyết"},
+            {"mist", "Sương mù"},
+            {"light rain", "Mưa nhẹ"},
+            {"overcast clouds", "Mây u ám"}
+            // Thêm các mô tả khác nếu cần
+        };
 
         private string[] cities = new string[]
         {
@@ -56,83 +83,117 @@ namespace WeatherApp
             cityComboBox.Items.AddRange(cities);
         }
 
-        private async Task GetWeatherForecast(string cityName)
+        private async Task GetWeatherForecast(string cityName, CancellationToken token)
         {
             string apiKey = "62800263f5dd019d92880a8782a73dab";
             string url = $"https://api.openweathermap.org/data/2.5/forecast?q={cityName}&appid={apiKey}";
 
             using (HttpClient client = new HttpClient())
             {
-                HttpResponseMessage response = await client.GetAsync(url);
-                if (response.IsSuccessStatusCode)
+                try
                 {
-                    string responseBody = await response.Content.ReadAsStringAsync();
-                    JObject forecastData = JObject.Parse(responseBody);
-                    JArray forecastList = (JArray)forecastData["list"];
-
-                    DateTime today = DateTime.Now.Date;
-                    bool todayForecastFound = false;
-
-                    foreach (JObject forecast in forecastList)
+                    HttpResponseMessage response = await client.GetAsync(url, token);
+                    if (response.IsSuccessStatusCode)
                     {
-                        DateTime forecastTime = DateTime.Parse(forecast["dt_txt"].ToString());
+                        string responseBody = await response.Content.ReadAsStringAsync();
+                        JObject forecastData = JObject.Parse(responseBody);
+                        JArray forecastList = (JArray)forecastData["list"];
 
-                        // Kiểm tra xem dự đoán có phải là hôm nay không
-                        if (forecastTime.Date == today)
+                        DateTime today = DateTime.Now.Date;
+                        bool todayForecastFound = false;
+
+                        foreach (JObject forecast in forecastList)
                         {
-                            double temperature = double.Parse(forecast["main"]["temp"].ToString()) - 273.15;
-                            string weatherDescription = forecast["weather"][0]["description"].ToString();
-                            string weatherIconCode = forecast["weather"][0]["icon"].ToString();
-                            double humidity = double.Parse(forecast["main"]["humidity"].ToString());
-                            double pressure = double.Parse(forecast["main"]["pressure"].ToString());
-                            double windSpeed = double.Parse(forecast["wind"]["speed"].ToString());
-                            double gustSpeed = forecast["wind"].SelectToken("gust") != null
-                                ? double.Parse(forecast["wind"]["gust"].ToString())
+                            token.ThrowIfCancellationRequested(); // Kiểm tra nếu yêu cầu đã bị hủy
+
+                            DateTime forecastTime = DateTime.Parse(forecast["dt_txt"].ToString());
+                            if (forecastTime.Date == today)
+                            {
+                                double temperature = double.Parse(forecast["main"]["temp"].ToString()) - 273.15;
+                                double humidity = double.Parse(forecast["main"]["humidity"].ToString());
+                                double windSpeed = double.Parse(forecast["wind"]["speed"].ToString());
+                                double pressure = double.Parse(forecast["main"]["pressure"].ToString());
+                                double gustSpeed = forecast["wind"].SelectToken("gust") != null
+                                    ? double.Parse(forecast["wind"]["gust"].ToString())
                                     : 0.0; // Giá trị gió giật, nếu có
 
-                            // Lượng mưa
-                            double rainAmount = forecast["rain"] != null
-                                ? (forecast["rain"]["3h"] != null
-                                    ? double.Parse(forecast["rain"]["3h"].ToString())
-                                    : 0.0)
-                                : 0.0;
+                                // Lượng mưa
+                                double rainAmount = forecast["rain"] != null
+                                    ? (forecast["rain"]["3h"] != null
+                                        ? double.Parse(forecast["rain"]["3h"].ToString())
+                                        : 0.0)
+                                    : 0.0;
 
-                            // Cập nhật thông tin thời tiết vào Label
-                            Temp.Text = $"{temperature:F1}°C";
-                            Dcr.Text = $" {weatherDescription}";
-                            humid.Text = $"Độ ẩm: {humidity:F1}%";
-                            Prs.Text = $"Áp suất khí quyển: {pressure} hPa";
-                            wind.Text = $"Tốc độ gió: {windSpeed:F1} m/s";
-                            rain.Text = $"Lượng mưa: {rainAmount:F1} mm";
-                            gust.Text = $"Gió giật: {gustSpeed:F1} m/s";
+                                string weatherDescription = forecast["weather"][0]["description"].ToString();
+                                string weatherDescriptionInVietnamese = weatherDescriptions.ContainsKey(weatherDescription)
+                                    ? weatherDescriptions[weatherDescription]
+                                    : weatherDescription;
+                                string weatherIconCode = forecast["weather"][0]["icon"].ToString();
 
-                            // Cập nhật ngày và giờ
-                            day.Text = $"Ngày: {DateTime.Now.ToString("dd/MM/yyyy")}";
-                            hours.Text = $"Giờ: {DateTime.Now.ToString("HH:mm:ss")}";
+                                // Cập nhật thông tin thời tiết vào Label
+                                Temp.Text = $"{temperature:F1}°C";
+                                Dcr.Text = $" {weatherDescriptionInVietnamese}";
+                                humid.Text = $"Độ ẩm: {humidity:F1}%";
+                                Prs.Text = $"Áp suất khí quyển: {pressure} hPa";
+                                wind.Text = $"Tốc độ gió: {windSpeed:F1} m/s";
+                                rain.Text = $"Lượng mưa: {rainAmount:F1} mm";
+                                gust.Text = $"Gió giật: {gustSpeed:F1} m/s";
 
-                            // Cập nhật hình ảnh thời tiết
-                            string iconUrl = $"http://openweathermap.org/img/wn/{weatherIconCode}.png";
-                            using (HttpClient iconClient = new HttpClient())
-                            {
-                                byte[] iconData = await iconClient.GetByteArrayAsync(iconUrl);
-                                using (MemoryStream ms = new MemoryStream(iconData))
+                                // Cập nhật ngày và giờ
+                                day.Text = $"Ngày: {DateTime.Now.ToString("dd/MM/yyyy")}";
+                                hours.Text = $"Giờ: {DateTime.Now.ToString("HH:mm:ss")}";
+
+                                // Cập nhật hình ảnh thời tiết
+                                string iconUrl = $"http://openweathermap.org/img/wn/{weatherIconCode}.png";
+                                using (HttpClient iconClient = new HttpClient())
                                 {
-                                    picIcon.Image = Image.FromStream(ms);
+                                    byte[] iconData = await iconClient.GetByteArrayAsync(iconUrl);
+                                    using (MemoryStream ms = new MemoryStream(iconData))
+                                    {
+                                        picIcon.Image = Image.FromStream(ms);
+                                    }
                                 }
-                            }
 
-                            todayForecastFound = true;
-                            break; // Ngừng vòng lặp khi đã hiển thị thông tin cho ngày hôm nay
+                                todayForecastFound = true;
+                                break; // Ngừng vòng lặp khi đã hiển thị thông tin cho ngày hôm nay
+                            }
+                        }
+
+                        // Nếu không có dự báo cho ngày hôm nay, hiển thị thông báo
+                        if (!todayForecastFound)
+                        {
+                            Label noDataLabel = new Label
+                            {
+                                Text = "Không có dự báo thời tiết cho ngày hôm nay.",
+                                AutoSize = true,
+                                ForeColor = Color.Red,
+                                Font = new Font("Arial", 12, FontStyle.Bold),
+                                TextAlign = ContentAlignment.MiddleCenter,
+                                Top = 60,
+                                Left = (this.ClientSize.Width - 250) / 2
+                            };
+                            this.Controls.Add(noDataLabel);
                         }
                     }
-
+                    else
+                    {
+                        MessageBox.Show("Không tìm thấy thành phố hoặc có lỗi xảy ra.");
+                    }
                 }
-                else
+                catch (OperationCanceledException)
                 {
-                    MessageBox.Show("Không tìm thấy thành phố hoặc có lỗi xảy ra.");
+                    // Xử lý khi yêu cầu bị hủy
+                    MessageBox.Show("Yêu cầu bị hủy.");
+                }
+                catch (Exception ex)
+                {
+                    // Xử lý lỗi khác
+                    MessageBox.Show($"Đã xảy ra lỗi: {ex.Message}");
                 }
             }
         }
+
+
 
 
         private void detailsButton_Click(object sender, EventArgs e)
