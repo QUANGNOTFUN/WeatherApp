@@ -31,7 +31,8 @@ namespace WeatherApp
             {"thunderstorm", "Dông"},
             {"snow", "Tuyết"},
             {"mist", "Sương mù"},
-            {"light rain", "Mưa nhẹ"}
+            {"light rain", "Mưa nhẹ"},
+            {"overcast clouds", "Mây u ám"}
             // Thêm các mô tả khác nếu cần
         };
 
