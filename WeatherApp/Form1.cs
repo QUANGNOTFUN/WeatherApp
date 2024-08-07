@@ -6,7 +6,9 @@ using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.IO;
 using System.Drawing;
-using System.Linq;
+using System.Linq; 
+
+
 
 namespace WeatherApp
 {
@@ -68,7 +70,6 @@ namespace WeatherApp
                     JObject forecastData = JObject.Parse(responseBody);
                     JArray forecastList = (JArray)forecastData["list"];
 
-                    weatherListBox.Items.Clear();
                     DateTime today = DateTime.Now.Date;
                     bool todayForecastFound = false;
 
@@ -85,14 +86,29 @@ namespace WeatherApp
                             double humidity = double.Parse(forecast["main"]["humidity"].ToString());
                             double pressure = double.Parse(forecast["main"]["pressure"].ToString());
                             double windSpeed = double.Parse(forecast["wind"]["speed"].ToString());
+                            double gustSpeed = forecast["wind"].SelectToken("gust") != null
+                                ? double.Parse(forecast["wind"]["gust"].ToString())
+                                    : 0.0; // Giá trị gió giật, nếu có
 
-                            // Cập nhật thông tin thời tiết cho ngày hôm nay
-                            weatherListBox.Items.Add($"Ngày hôm nay:");
-                            weatherListBox.Items.Add($"Nhiệt độ: {temperature:F1}°C");
-                            weatherListBox.Items.Add($"Mô tả thời tiết: {weatherDescription}");
-                            weatherListBox.Items.Add($"Độ ẩm: {humidity:F1}%");
-                            weatherListBox.Items.Add($"Áp suất khí quyển: {pressure} hPa");
-                            weatherListBox.Items.Add($"Tốc độ gió: {windSpeed:F1} m/s");
+                            // Lượng mưa
+                            double rainAmount = forecast["rain"] != null
+                                ? (forecast["rain"]["3h"] != null
+                                    ? double.Parse(forecast["rain"]["3h"].ToString())
+                                    : 0.0)
+                                : 0.0;
+
+                            // Cập nhật thông tin thời tiết vào Label
+                            Temp.Text = $"{temperature:F1}°C";
+                            Dcr.Text = $" {weatherDescription}";
+                            humid.Text = $"Độ ẩm: {humidity:F1}%";
+                            Prs.Text = $"Áp suất khí quyển: {pressure} hPa";
+                            wind.Text = $"Tốc độ gió: {windSpeed:F1} m/s";
+                            rain.Text = $"Lượng mưa: {rainAmount:F1} mm";
+                            gust.Text = $"Gió giật: {gustSpeed:F1} m/s";
+
+                            // Cập nhật ngày và giờ
+                            day.Text = $"Ngày: {DateTime.Now.ToString("dd/MM/yyyy")}";
+                            hours.Text = $"Giờ: {DateTime.Now.ToString("HH:mm:ss")}";
 
                             // Cập nhật hình ảnh thời tiết
                             string iconUrl = $"http://openweathermap.org/img/wn/{weatherIconCode}.png";
@@ -110,10 +126,6 @@ namespace WeatherApp
                         }
                     }
 
-                    if (!todayForecastFound)
-                    {
-                        weatherListBox.Items.Add("Không có dự đoán thời tiết cho ngày hôm nay.");
-                    }
                 }
                 else
                 {
@@ -121,6 +133,7 @@ namespace WeatherApp
                 }
             }
         }
+
 
         private void detailsButton_Click(object sender, EventArgs e)
         {
@@ -136,5 +149,6 @@ namespace WeatherApp
                 MessageBox.Show("Vui lòng nhập tên thành phố.");
             }
         }
+
     }
 }
