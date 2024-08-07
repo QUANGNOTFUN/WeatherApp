@@ -38,7 +38,8 @@
             // 
             // previousDayButton
             // 
-            this.previousDayButton.Location = new System.Drawing.Point(139, 87);
+            this.previousDayButton.Location = new System.Drawing.Point(245, 78);
+            this.previousDayButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.previousDayButton.Name = "previousDayButton";
             this.previousDayButton.Size = new System.Drawing.Size(75, 23);
             this.previousDayButton.TabIndex = 0;
@@ -48,7 +49,8 @@
             // 
             // nextDayButton
             // 
-            this.nextDayButton.Location = new System.Drawing.Point(584, 94);
+            this.nextDayButton.Location = new System.Drawing.Point(649, 78);
+            this.nextDayButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.nextDayButton.Name = "nextDayButton";
             this.nextDayButton.Size = new System.Drawing.Size(75, 23);
             this.nextDayButton.TabIndex = 1;
@@ -59,6 +61,7 @@
             // backButton
             // 
             this.backButton.Location = new System.Drawing.Point(31, 23);
+            this.backButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.backButton.Name = "backButton";
             this.backButton.Size = new System.Drawing.Size(75, 23);
             this.backButton.TabIndex = 6;
@@ -69,7 +72,7 @@
             // currentDateLabel
             // 
             this.currentDateLabel.AutoSize = true;
-            this.currentDateLabel.Location = new System.Drawing.Point(259, 93);
+            this.currentDateLabel.Location = new System.Drawing.Point(507, 78);
             this.currentDateLabel.Name = "currentDateLabel";
             this.currentDateLabel.Size = new System.Drawing.Size(44, 16);
             this.currentDateLabel.TabIndex = 9;
@@ -78,7 +81,7 @@
             // cityNameLabel
             // 
             this.cityNameLabel.AutoSize = true;
-            this.cityNameLabel.Location = new System.Drawing.Point(315, 29);
+            this.cityNameLabel.Location = new System.Drawing.Point(507, 30);
             this.cityNameLabel.Name = "cityNameLabel";
             this.cityNameLabel.Size = new System.Drawing.Size(44, 16);
             this.cityNameLabel.TabIndex = 10;
@@ -87,29 +90,28 @@
             // weatherFlowLayoutPanel
             // 
             this.weatherFlowLayoutPanel.BackColor = System.Drawing.Color.White;
-            this.weatherFlowLayoutPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.weatherFlowLayoutPanel.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.weatherFlowLayoutPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.weatherFlowLayoutPanel.Location = new System.Drawing.Point(90, 337);
-            this.weatherFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(0, 0, 0, 0);
+            this.weatherFlowLayoutPanel.Location = new System.Drawing.Point(83, 355);
+            this.weatherFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
             this.weatherFlowLayoutPanel.Name = "weatherFlowLayoutPanel";
-            this.weatherFlowLayoutPanel.Size = new System.Drawing.Size(1000, 427);
+            this.weatherFlowLayoutPanel.Size = new System.Drawing.Size(834, 215);
             this.weatherFlowLayoutPanel.TabIndex = 12;
+            this.weatherFlowLayoutPanel.WrapContents = false;
             // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Window;
-            this.ClientSize = new System.Drawing.Size(1182, 807);
+            this.ClientSize = new System.Drawing.Size(1044, 629);
             this.Controls.Add(this.weatherFlowLayoutPanel);
             this.Controls.Add(this.cityNameLabel);
             this.Controls.Add(this.currentDateLabel);
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.nextDayButton);
             this.Controls.Add(this.previousDayButton);
-            this.MaximumSize = new System.Drawing.Size(1200, 854);
-            this.MinimumSize = new System.Drawing.Size(900, 640);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form2";
             this.Text = "Form2";
             this.Load += new System.EventHandler(this.Form2_Load);
