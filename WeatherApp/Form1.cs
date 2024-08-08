@@ -8,23 +8,47 @@ using System.IO;
 using System.Drawing;
 using System.Linq;
 using System.Threading;
-
-
+using System.Drawing.Drawing2D;
 
 namespace WeatherApp
 {
     public partial class Form1 : Form
     {
         private System.Windows.Forms.Timer timer;
+        private string selectedCity; // Biến lưu giá trị thành phố được chọn
+        private ComboBox cityComboBox; // ComboBox để chọn thành phố
+
         public Form1()
         {
             InitializeComponent();
+            // Khởi tạo ComboBox
+            cityComboBox = new ComboBox();
+            cityComboBox.Location = new Point(458, 52); // Điều chỉnh vị trí theo ý muốn
+            cityComboBox.Size = new Size(224, 24); // Điều chỉnh kích thước theo ý muốn
+            cityComboBox.Font = new Font("Microsoft Sans Serif", 13.8F); // Thiết lập font
+            this.Controls.Add(cityComboBox);
+
+            // Thiết lập tính năng tự động hoàn thành cho ComboBox
+            var autoComplete = new AutoCompleteStringCollection();
+            autoComplete.AddRange(cities);
+            cityComboBox.AutoCompleteCustomSource = autoComplete;
+            cityComboBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cityComboBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
+
+            // Đăng ký sự kiện cho ComboBox
+            cityComboBox.SelectedIndexChanged += CityComboBox_SelectedIndexChanged;
+
+            // Đăng ký sự kiện Paint để vẽ gradient background
+            this.Paint += Form1_Paint;
         }
 
         private async void searchButton_Click(object sender, EventArgs e)
         {
-            string selectedCity = cityComboBox.SelectedItem?.ToString();
-            if (!string.IsNullOrEmpty(selectedCity))
+            // Lấy giá trị từ ComboBox
+            string cityToSearch = cityComboBox.SelectedItem?.ToString();
+
+            // Kiểm tra xem có giá trị thành phố không
+            if (!string.IsNullOrEmpty(cityToSearch))
             {
                 label2.Visible = true;
                 label7.Visible = true;
@@ -36,7 +60,7 @@ namespace WeatherApp
                 {
                     try
                     {
-                        await GetWeatherForecast(selectedCity, cts.Token);
+                        await GetWeatherForecast(cityToSearch, cts.Token);
                     }
                     catch (OperationCanceledException)
                     {
@@ -49,7 +73,6 @@ namespace WeatherApp
                 MessageBox.Show("Vui lòng chọn thành phố từ danh sách.");
             }
         }
-
 
         private Dictionary<string, string> weatherDescriptions = new Dictionary<string, string>
         {
@@ -94,12 +117,13 @@ namespace WeatherApp
             timer.Interval = 1000; // Cập nhật mỗi giây
             timer.Tick += Timer_Tick;
 
-            label2.Visible = false;
-            label7.Visible = false;
-            label3.Visible = false;
-            label5.Visible = false;
-            label6.Visible = false;
-            label4.Visible = false;
+        }
+
+        private void CityComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Cập nhật giá trị thành phố được chọn
+            selectedCity = cityComboBox.SelectedItem?.ToString();
+
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -220,23 +244,31 @@ namespace WeatherApp
             }
         }
 
-
-
-
         private void detailsButton_Click(object sender, EventArgs e)
         {
-            string cityName = cityComboBox.SelectedItem?.ToString(); ;
-            if (!string.IsNullOrEmpty(cityName))
+            if (!string.IsNullOrEmpty(selectedCity))
             {
                 // Khởi tạo Form2 và truyền tên thành phố
-                Form2 form2 = new Form2(cityName);
+                Form2 form2 = new Form2(selectedCity);
                 form2.Show();
             }
             else
             {
-                MessageBox.Show("Vui lòng nhập tên thành phố.");
+                MessageBox.Show("Vui lòng chọn thành phố từ danh sách.");
             }
         }
 
+        // Phương thức vẽ gradient background
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            using (LinearGradientBrush brush = new LinearGradientBrush(
+                this.ClientRectangle,
+                Color.LightSkyBlue, // Màu bắt đầu gradient
+                Color.SkyBlue,     // Màu kết thúc gradient
+                LinearGradientMode.Vertical))
+            {
+                e.Graphics.FillRectangle(brush, this.ClientRectangle);
+            }
+        }
     }
 }
