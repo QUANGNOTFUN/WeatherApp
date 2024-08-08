@@ -50,6 +50,12 @@ namespace WeatherApp
             // Kiểm tra xem có giá trị thành phố không
             if (!string.IsNullOrEmpty(cityToSearch))
             {
+                label2.Visible = true;
+                label7.Visible = true;
+                label3.Visible = true;
+                label5.Visible = true;
+                label6.Visible = true;
+                label4.Visible = true;
                 using (CancellationTokenSource cts = new CancellationTokenSource())
                 {
                     try
@@ -110,12 +116,14 @@ namespace WeatherApp
             timer = new System.Windows.Forms.Timer();
             timer.Interval = 1000; // Cập nhật mỗi giây
             timer.Tick += Timer_Tick;
+
         }
 
         private void CityComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Cập nhật giá trị thành phố được chọn
             selectedCity = cityComboBox.SelectedItem?.ToString();
+
         }
 
         private void Timer_Tick(object sender, EventArgs e)
