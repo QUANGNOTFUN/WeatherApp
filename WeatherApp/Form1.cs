@@ -26,6 +26,12 @@ namespace WeatherApp
             string selectedCity = cityComboBox.SelectedItem?.ToString();
             if (!string.IsNullOrEmpty(selectedCity))
             {
+                label2.Visible = true;
+                label7.Visible = true;
+                label3.Visible = true;
+                label5.Visible = true;
+                label6.Visible = true;
+                label4.Visible = true;
                 using (CancellationTokenSource cts = new CancellationTokenSource())
                 {
                     try
@@ -87,7 +93,13 @@ namespace WeatherApp
             timer = new System.Windows.Forms.Timer();
             timer.Interval = 1000; // Cập nhật mỗi giây
             timer.Tick += Timer_Tick;
-           
+
+            label2.Visible = false;
+            label7.Visible = false;
+            label3.Visible = false;
+            label5.Visible = false;
+            label6.Visible = false;
+            label4.Visible = false;
         }
 
         private void Timer_Tick(object sender, EventArgs e)
