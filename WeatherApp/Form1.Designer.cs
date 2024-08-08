@@ -28,12 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.searchButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.detailsButton = new System.Windows.Forms.Button();
             this.picIcon = new System.Windows.Forms.PictureBox();
-            this.cityComboBox = new System.Windows.Forms.ComboBox();
             this.Temp = new System.Windows.Forms.Label();
             this.day = new System.Windows.Forms.Label();
             this.Dcr = new System.Windows.Forms.Label();
@@ -54,29 +52,33 @@
             // 
             // searchButton
             // 
-            this.searchButton.Location = new System.Drawing.Point(720, 52);
+            this.searchButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.searchButton.Location = new System.Drawing.Point(707, 52);
+            this.searchButton.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
             this.searchButton.Name = "searchButton";
-            this.searchButton.Size = new System.Drawing.Size(77, 24);
+            this.searchButton.Size = new System.Drawing.Size(179, 35);
             this.searchButton.TabIndex = 4;
-            this.searchButton.Text = "Tìm";
+            this.searchButton.Text = "Tìm kiếm";
             this.searchButton.UseVisualStyleBackColor = true;
             this.searchButton.Click += new System.EventHandler(this.searchButton_Click);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(346, 52);
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label1.Location = new System.Drawing.Point(392, 52);
             this.label1.Name = "label1";
             this.label1.Padding = new System.Windows.Forms.Padding(4);
-            this.label1.Size = new System.Drawing.Size(82, 24);
+            this.label1.Size = new System.Drawing.Size(75, 37);
             this.label1.TabIndex = 5;
-            this.label1.Text = "Thành phố:";
+            this.label1.Text = "Tỉnh:";
             // 
             // detailsButton
             // 
+            this.detailsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.detailsButton.Location = new System.Drawing.Point(435, 454);
             this.detailsButton.Name = "detailsButton";
-            this.detailsButton.Size = new System.Drawing.Size(118, 23);
+            this.detailsButton.Size = new System.Drawing.Size(203, 40);
             this.detailsButton.TabIndex = 7;
             this.detailsButton.Text = "Xem chi tiết";
             this.detailsButton.UseVisualStyleBackColor = true;
@@ -92,14 +94,6 @@
             this.picIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picIcon.TabIndex = 8;
             this.picIcon.TabStop = false;
-            // 
-            // cityComboBox
-            // 
-            this.cityComboBox.FormattingEnabled = true;
-            this.cityComboBox.Location = new System.Drawing.Point(458, 52);
-            this.cityComboBox.Name = "cityComboBox";
-            this.cityComboBox.Size = new System.Drawing.Size(224, 24);
-            this.cityComboBox.TabIndex = 9;
             // 
             // Temp
             // 
@@ -214,7 +208,7 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 19.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.Indigo;
+            this.label2.ForeColor = System.Drawing.Color.MidnightBlue;
             this.label2.Location = new System.Drawing.Point(468, 190);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(182, 38);
@@ -274,9 +268,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1009, 498);
+            this.ClientSize = new System.Drawing.Size(1200, 854);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -292,14 +285,15 @@
             this.Controls.Add(this.day);
             this.Controls.Add(this.hours);
             this.Controls.Add(this.Temp);
-            this.Controls.Add(this.cityComboBox);
             this.Controls.Add(this.picIcon);
             this.Controls.Add(this.detailsButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.searchButton);
             this.Cursor = System.Windows.Forms.Cursors.SizeAll;
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximumSize = new System.Drawing.Size(1200, 854);
+            this.MinimumSize = new System.Drawing.Size(1200, 854);
             this.Name = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picIcon)).EndInit();
@@ -313,7 +307,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button detailsButton;
         private System.Windows.Forms.PictureBox picIcon;
-        private System.Windows.Forms.ComboBox cityComboBox;
         private System.Windows.Forms.Label Temp;
         private System.Windows.Forms.Label day;
         private System.Windows.Forms.Label Dcr;
