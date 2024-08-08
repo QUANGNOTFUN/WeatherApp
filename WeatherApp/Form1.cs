@@ -15,9 +15,11 @@ namespace WeatherApp
 {
     public partial class Form1 : Form
     {
+        private System.Windows.Forms.Timer timer;
         public Form1()
         {
             InitializeComponent();
+            this.Size = new Size(1000, 142);
         }
 
         private async void searchButton_Click(object sender, EventArgs e)
@@ -25,6 +27,7 @@ namespace WeatherApp
             string selectedCity = cityComboBox.SelectedItem?.ToString();
             if (!string.IsNullOrEmpty(selectedCity))
             {
+                this.Size = new Size(1014, 545);
                 using (CancellationTokenSource cts = new CancellationTokenSource())
                 {
                     try
@@ -81,6 +84,18 @@ namespace WeatherApp
         {
             // Khởi tạo danh sách ban đầu cho ComboBox
             cityComboBox.Items.AddRange(cities);
+
+            // Khởi tạo Timer
+            timer = new System.Windows.Forms.Timer();
+            timer.Interval = 1000; // Cập nhật mỗi giây
+            timer.Tick += Timer_Tick;
+           
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            // Cập nhật giờ trong Label
+            hours.Text = $"Giờ: {DateTime.Now.ToString("HH:mm:ss")}";
         }
 
         private async Task GetWeatherForecast(string cityName, CancellationToken token)
@@ -141,16 +156,18 @@ namespace WeatherApp
 
                                 // Cập nhật ngày và giờ
                                 day.Text = $"Ngày: {DateTime.Now.ToString("dd/MM/yyyy")}";
-                                hours.Text = $"Giờ: {DateTime.Now.ToString("HH:mm:ss")}";
+                                timer.Start(); // Bắt đầu Timer
 
                                 // Cập nhật hình ảnh thời tiết
-                                string iconUrl = $"http://openweathermap.org/img/wn/{weatherIconCode}.png";
+                                string iconUrl = $"http://openweathermap.org/img/wn/{weatherIconCode}@2x.png";
                                 using (HttpClient iconClient = new HttpClient())
                                 {
                                     byte[] iconData = await iconClient.GetByteArrayAsync(iconUrl);
                                     using (MemoryStream ms = new MemoryStream(iconData))
                                     {
-                                        picIcon.Image = Image.FromStream(ms);
+                                        Image originalImage = Image.FromStream(ms);
+                                        Image resizedImage = new Bitmap(originalImage, new Size(220, 180)); // Thay đổi kích thước hình ảnh
+                                        picIcon.Image = resizedImage;
                                     }
                                 }
 

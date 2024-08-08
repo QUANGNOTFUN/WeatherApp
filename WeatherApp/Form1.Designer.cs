@@ -35,7 +35,6 @@
             this.picIcon = new System.Windows.Forms.PictureBox();
             this.cityComboBox = new System.Windows.Forms.ComboBox();
             this.Temp = new System.Windows.Forms.Label();
-            this.hours = new System.Windows.Forms.Label();
             this.day = new System.Windows.Forms.Label();
             this.Dcr = new System.Windows.Forms.Label();
             this.humid = new System.Windows.Forms.Label();
@@ -44,6 +43,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.rain = new System.Windows.Forms.Label();
             this.gust = new System.Windows.Forms.Label();
+            this.hours = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picIcon)).BeginInit();
             this.SuspendLayout();
             // 
@@ -84,7 +84,7 @@
             this.picIcon.Margin = new System.Windows.Forms.Padding(0);
             this.picIcon.Name = "picIcon";
             this.picIcon.Size = new System.Drawing.Size(208, 161);
-            this.picIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picIcon.TabIndex = 8;
             this.picIcon.TabStop = false;
             // 
@@ -100,28 +100,19 @@
             // 
             this.Temp.AutoSize = true;
             this.Temp.BackColor = System.Drawing.Color.Transparent;
-            this.Temp.Font = new System.Drawing.Font("Times New Roman", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Temp.Font = new System.Drawing.Font("Times New Roman", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Temp.ForeColor = System.Drawing.Color.Coral;
             this.Temp.Location = new System.Drawing.Point(372, 232);
             this.Temp.Name = "Temp";
-            this.Temp.Size = new System.Drawing.Size(0, 37);
+            this.Temp.Size = new System.Drawing.Size(0, 45);
             this.Temp.TabIndex = 10;
-            // 
-            // hours
-            // 
-            this.hours.AutoSize = true;
-            this.hours.BackColor = System.Drawing.Color.Transparent;
-            this.hours.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.hours.Location = new System.Drawing.Point(978, 18);
-            this.hours.Name = "hours";
-            this.hours.Size = new System.Drawing.Size(0, 32);
-            this.hours.TabIndex = 18;
             // 
             // day
             // 
             this.day.AutoSize = true;
             this.day.BackColor = System.Drawing.Color.Transparent;
             this.day.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.day.Location = new System.Drawing.Point(101, 18);
+            this.day.Location = new System.Drawing.Point(113, 18);
             this.day.Name = "day";
             this.day.Size = new System.Drawing.Size(0, 32);
             this.day.TabIndex = 20;
@@ -131,7 +122,7 @@
             this.Dcr.AutoSize = true;
             this.Dcr.BackColor = System.Drawing.Color.Transparent;
             this.Dcr.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Dcr.Location = new System.Drawing.Point(172, 368);
+            this.Dcr.Location = new System.Drawing.Point(185, 330);
             this.Dcr.Name = "Dcr";
             this.Dcr.Size = new System.Drawing.Size(0, 25);
             this.Dcr.TabIndex = 21;
@@ -197,15 +188,24 @@
             this.gust.Size = new System.Drawing.Size(0, 32);
             this.gust.TabIndex = 27;
             // 
+            // hours
+            // 
+            this.hours.AutoSize = true;
+            this.hours.BackColor = System.Drawing.Color.Transparent;
+            this.hours.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.hours.Location = new System.Drawing.Point(837, 18);
+            this.hours.Name = "hours";
+            this.hours.Size = new System.Drawing.Size(0, 32);
+            this.hours.TabIndex = 18;
+            // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.HighlightText;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1182, 498);
+            this.ClientSize = new System.Drawing.Size(996, 498);
             this.Controls.Add(this.gust);
             this.Controls.Add(this.rain);
             this.Controls.Add(this.label4);
@@ -223,9 +223,8 @@
             this.Controls.Add(this.searchButton);
             this.Cursor = System.Windows.Forms.Cursors.SizeAll;
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Form1";
-            this.Text = "Tốc độ gió";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picIcon)).EndInit();
             this.ResumeLayout(false);
@@ -240,7 +239,6 @@
         private System.Windows.Forms.PictureBox picIcon;
         private System.Windows.Forms.ComboBox cityComboBox;
         private System.Windows.Forms.Label Temp;
-        private System.Windows.Forms.Label hours;
         private System.Windows.Forms.Label day;
         private System.Windows.Forms.Label Dcr;
         private System.Windows.Forms.Label humid;
@@ -249,5 +247,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label rain;
         private System.Windows.Forms.Label gust;
+        private System.Windows.Forms.Label hours;
     }
 }
