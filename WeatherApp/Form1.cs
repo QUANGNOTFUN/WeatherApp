@@ -19,7 +19,6 @@ namespace WeatherApp
         public Form1()
         {
             InitializeComponent();
-            this.Size = new Size(1000, 142);
         }
 
         private async void searchButton_Click(object sender, EventArgs e)
@@ -27,7 +26,6 @@ namespace WeatherApp
             string selectedCity = cityComboBox.SelectedItem?.ToString();
             if (!string.IsNullOrEmpty(selectedCity))
             {
-                this.Size = new Size(1014, 545);
                 using (CancellationTokenSource cts = new CancellationTokenSource())
                 {
                     try
@@ -148,11 +146,11 @@ namespace WeatherApp
                                 // Cập nhật thông tin thời tiết vào Label
                                 Temp.Text = $"{temperature:F1}°C";
                                 Dcr.Text = $" {weatherDescriptionInVietnamese}";
-                                humid.Text = $"Độ ẩm: {humidity:F1}%";
-                                Prs.Text = $"Áp suất khí quyển: {pressure} hPa";
-                                wind.Text = $"Tốc độ gió: {windSpeed:F1} m/s";
+                                humid.Text = $" {humidity:F1}%";
+                                Prs.Text = $" {pressure} hPa";
+                                wind.Text = $"{windSpeed:F1} m/s";
                                 rain.Text = $"Lượng mưa: {rainAmount:F1} mm";
-                                gust.Text = $"Gió giật: {gustSpeed:F1} m/s";
+                                gust.Text = $" {gustSpeed:F1} m/s";
 
                                 // Cập nhật ngày và giờ
                                 day.Text = $"Ngày: {DateTime.Now.ToString("dd/MM/yyyy")}";
