@@ -92,18 +92,18 @@ namespace WeatherApp
 
         private string[] cities = new string[]
         {
-            "An Giang", "Bà Rịa - Vũng Tàu", "Bắc Giang", "Bắc Kạn", "Bạc Liêu",
-            "Bắc Ninh", "Bến Tre", "Bình Định", "Bình Dương", "Bình Phước",
+            "An Giang", "Vũng Tàu", "Bắc Giang", "Bắc Kạn", "Bạc Liêu",
+            "Bắc Ninh", "Bến Tre", "Bình Định", "Bình Dương", "Tỉnh Bình Phước",
             "Bình Thuận", "Cà Mau", "Cần Thơ", "Cao Bằng", "Đà Nẵng",
-            "Đắk Lắk", "Đắk Nông", "Điện Biên", "Đồng Nai", "Đồng Tháp",
+            "Tỉnh Ðắc Lắk", "Ðăc Nông", "Điện Biên Phủ", "Tỉnh Ðồng Nai", "Tỉnh Ðồng Tháp",
             "Gia Lai", "Hà Giang", "Hà Nam", "Hà Nội", "Hà Tĩnh",
-            "Hải Dương", "Hải Phòng", "Hậu Giang", "Hòa Bình", "Hưng Yên",
-            "Khánh Hòa", "Kiên Giang", "Kon Tum", "Lai Châu", "Lâm Đồng",
-            "Lạng Sơn", "Lào Cai", "Long An", "Nam Định", "Nghệ An",
-            "Ninh Bình", "Ninh Thuận", "Phú Thọ", "Phú Yên", "Quảng Bình",
-            "Quảng Nam", "Quảng Ngãi", "Quảng Ninh", "Quảng Trị", "Sóc Trăng",
+            "Tỉnh Hải Dương", "Hải Phòng", "Tỉnh Hau Giang", "Hòa Bình", "Hưng Yên",
+            "Khánh Hòa", "Tỉnh Kiến Giang", "Kon Tum", "Lai Châu", "Da Lat",
+            "Lạng Sơn", "Lào Cai", "Long An", "Nam Định", "Tỉnh Nghệ An",
+            "Ninh Bình", "Tỉnh Ninh Thuận", "Phú Thọ", "Tỉnh Phú Yên", "Tỉnh Quảng Bình",
+            "Tỉnh Quảng Nam", "Quảng Ngãi", "Tỉnh Quảng Ninh", "Quảng Trị", "Sóc Trăng",
             "Sơn La", "Tây Ninh", "Thái Bình", "Thái Nguyên", "Thanh Hóa",
-            "Thừa Thiên Huế", "Tiền Giang", "TP. Hồ Chí Minh", "Trà Vinh", "Tuyên Quang",
+            "Huế", "Tỉnh Tiền Giang", "Thành phố Hồ Chí Minh", "Trà Vinh", "Tuyên Quang",
             "Vĩnh Long", "Vĩnh Phúc", "Yên Bái"
         };
 
