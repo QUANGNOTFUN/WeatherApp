@@ -92,10 +92,10 @@ namespace WeatherApp
 
         private string[] cities = new string[]
         {
-            "An Giang", "Bà Rịa - Vũng Tàu", "Bắc Giang", "Bắc Kạn", "Bạc Liêu",
+            "An Giang", "Vũng Tàu", "Bắc Giang", "Bắc Kạn", "Bạc Liêu",
             "Bắc Ninh", "Bến Tre", "Bình Định", "Bình Dương", "Bình Phước",
             "Bình Thuận", "Cà Mau", "Cần Thơ", "Cao Bằng", "Đà Nẵng",
-            "Đắk Lắk", "Đắk Nông", "Điện Biên", "Đồng Nai", "Đồng Tháp",
+            "Tỉnh Ðắc Lắk", "Đắk Nông", "Điện Biên Phủ", "Tỉnh Ðồng Nai", "Tỉnh Ðồng Tháp",
             "Gia Lai", "Hà Giang", "Hà Nam", "Hà Nội", "Hà Tĩnh",
             "Hải Dương", "Hải Phòng", "Hậu Giang", "Hòa Bình", "Hưng Yên",
             "Khánh Hòa", "Kiên Giang", "Kon Tum", "Lai Châu", "Lâm Đồng",
@@ -103,7 +103,7 @@ namespace WeatherApp
             "Ninh Bình", "Ninh Thuận", "Phú Thọ", "Phú Yên", "Quảng Bình",
             "Quảng Nam", "Quảng Ngãi", "Quảng Ninh", "Quảng Trị", "Sóc Trăng",
             "Sơn La", "Tây Ninh", "Thái Bình", "Thái Nguyên", "Thanh Hóa",
-            "Thừa Thiên Huế", "Tiền Giang", "TP. Hồ Chí Minh", "Trà Vinh", "Tuyên Quang",
+            "Huế", "Tiền Giang", "Thành phố Hồ Chí Minh", "Trà Vinh", "Tuyên Quang",
             "Vĩnh Long", "Vĩnh Phúc", "Yên Bái"
         };
 
@@ -135,7 +135,7 @@ namespace WeatherApp
         private async Task GetWeatherForecast(string cityName, CancellationToken token)
         {
             string apiKey = "62800263f5dd019d92880a8782a73dab";
-            string url = $"https://api.openweathermap.org/data/2.5/forecast?q={cityName}&appid={apiKey}";
+            string url = $"https://api.openweathermap.org/data/2.5/forecast?q={Uri.EscapeDataString(cityName)}&appid={apiKey}";
 
             using (HttpClient client = new HttpClient())
             {
@@ -269,6 +269,11 @@ namespace WeatherApp
             {
                 e.Graphics.FillRectangle(brush, this.ClientRectangle);
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
