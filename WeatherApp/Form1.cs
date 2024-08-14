@@ -97,7 +97,7 @@ namespace WeatherApp
             "Tỉnh Bình Thuận", "Cà Mau", "Cần Thơ", "Cao Bằng", "Đà Nẵng",
             "Tỉnh Ðắc Lắk", "Ðăc Nông", "Điện Biên Phủ", "Tỉnh Ðồng Nai", "Tỉnh Ðồng Tháp",
             "Gia Lai", "Hà Giang", "Hà Nam", "Hà Nội", "Hà Tĩnh",
-            "Tỉnh Hải Dương", "Hải Phòng", "Tỉnh Hau Giang", "Hòa Bình", "Hưng Yên",
+            "Tỉnh Hải Dương", "Hải Phòng", "Hau Giang", "Hòa Bình", "Hưng Yên",
             "Khánh Hòa", "Tỉnh Kiến Giang", "Kon Tum", "Lai Châu", "Da Lat",
             "Lạng Sơn", "Lào Cai", "Long An", "Nam Định", "Tỉnh Nghệ An",
             "Ninh Bình", "Tỉnh Ninh Thuận", "Phú Thọ", "Tỉnh Phú Yên", "Tỉnh Quảng Bình",
