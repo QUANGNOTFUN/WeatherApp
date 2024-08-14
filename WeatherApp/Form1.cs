@@ -135,7 +135,7 @@ namespace WeatherApp
         private async Task GetWeatherForecast(string cityName, CancellationToken token)
         {
             string apiKey = "62800263f5dd019d92880a8782a73dab";
-            string url = $"https://api.openweathermap.org/data/2.5/forecast?q={cityName}&appid={apiKey}";
+            string url = $"https://api.openweathermap.org/data/2.5/forecast?q={Uri.EscapeDataString(cityName)}&appid={apiKey}";
 
             using (HttpClient client = new HttpClient())
             {
@@ -269,6 +269,11 @@ namespace WeatherApp
             {
                 e.Graphics.FillRectangle(brush, this.ClientRectangle);
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
