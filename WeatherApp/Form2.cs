@@ -269,15 +269,37 @@ namespace WeatherApp
         // Sự kiện vẽ nền gradient cho Form
         private void Form2_Paint(object sender, PaintEventArgs e)
         {
+            // Định nghĩa màu sắc cho gradient nền
+            Color topLeftColor = Color.FromArgb(245, 42, 42); // Màu vàng ở góc trên bên trái
+            Color middleColor = Color.FromArgb(237, 192, 44);     // Màu trung gian
+            Color bottomRightColor = Color.FromArgb(252, 228, 150); // Màu ở góc dưới bên phải
+
+            // Vẽ phần tư hình tròn màu vàng ở góc trên bên trái
+            int sunRadius = 150; // Bán kính của phần tư hình tròn
+            Rectangle sunRect = new Rectangle(0, 0, sunRadius * 2, sunRadius * 2);
+            using (SolidBrush sunBrush = new SolidBrush(topLeftColor))
+            {
+                e.Graphics.FillPie(sunBrush, sunRect, 0, 90); // Vẽ phần tư hình tròn
+            }
+
+            // Tạo LinearGradientBrush cho gradient nền
             using (LinearGradientBrush brush = new LinearGradientBrush(
                 this.ClientRectangle,
-                Color.LightSkyBlue,
-                Color.LightSteelBlue,
-                LinearGradientMode.BackwardDiagonal))
+                topLeftColor,
+                bottomRightColor,
+                LinearGradientMode.ForwardDiagonal))
             {
+                // Tạo một blend để sử dụng màu trung gian
+                Blend blend = new Blend
+                {
+                    Factors = new float[] { 0.0f, 0.6f, 1.0f }, // Tỷ lệ màu sắc
+                    Positions = new float[] { 0.0f, 0.3f, 1.0f } // Vị trí của các màu
+                };
+                brush.Blend = blend;
                 e.Graphics.FillRectangle(brush, this.ClientRectangle);
             }
         }
+
 
         // Sự kiện thay đổi kích thước Form, cập nhật vị trí và kích thước các điều khiển
         private void Form2_Resize(object sender, EventArgs e)
@@ -310,11 +332,15 @@ namespace WeatherApp
             previousDayButton.Font = buttonFont;
             backButton.Font = buttonFont;
 
-            nextDayButton.ForeColor = Color.White;
-            previousDayButton.ForeColor = Color.White;
-            backButton.ForeColor = Color.White;
+            // Đặt màu sắc cho các nút để phù hợp với nền
+            Color buttonColor = Color.FromArgb(252, 186, 3); // Màu vàng cam tương phản với nền
+            Color borderColor = Color.FromArgb(245, 42, 42); // Màu đỏ tương phản với nút và nền
+            Color textColor = Color.White;
 
-            Color buttonColor = Color.DodgerBlue;
+            nextDayButton.ForeColor = textColor;
+            previousDayButton.ForeColor = textColor;
+            backButton.ForeColor = textColor;
+
             nextDayButton.BackColor = buttonColor;
             previousDayButton.BackColor = buttonColor;
             backButton.BackColor = buttonColor;
@@ -324,14 +350,15 @@ namespace WeatherApp
             previousDayButton.FlatStyle = FlatStyle.Flat;
             backButton.FlatStyle = FlatStyle.Flat;
 
-            nextDayButton.FlatAppearance.BorderSize = 1;
-            previousDayButton.FlatAppearance.BorderSize = 1;
-            backButton.FlatAppearance.BorderSize = 1;
+            nextDayButton.FlatAppearance.BorderSize = 2;
+            previousDayButton.FlatAppearance.BorderSize = 2;
+            backButton.FlatAppearance.BorderSize = 2;
 
-            nextDayButton.FlatAppearance.BorderColor = Color.White;
-            previousDayButton.FlatAppearance.BorderColor = Color.White;
-            backButton.FlatAppearance.BorderColor = Color.White;
+            nextDayButton.FlatAppearance.BorderColor = borderColor;
+            previousDayButton.FlatAppearance.BorderColor = borderColor;
+            backButton.FlatAppearance.BorderColor = borderColor;
         }
+
 
 
 
