@@ -66,18 +66,20 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.label1.Location = new System.Drawing.Point(392, 52);
             this.label1.Name = "label1";
             this.label1.Padding = new System.Windows.Forms.Padding(4);
-            this.label1.Size = new System.Drawing.Size(75, 37);
+            this.label1.Size = new System.Drawing.Size(77, 39);
             this.label1.TabIndex = 5;
             this.label1.Text = "Tỉnh:";
             // 
             // detailsButton
             // 
             this.detailsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.detailsButton.Location = new System.Drawing.Point(435, 454);
+            this.detailsButton.Location = new System.Drawing.Point(436, 521);
             this.detailsButton.Name = "detailsButton";
             this.detailsButton.Size = new System.Drawing.Size(203, 40);
             this.detailsButton.TabIndex = 7;
@@ -88,10 +90,10 @@
             // picIcon
             // 
             this.picIcon.BackColor = System.Drawing.Color.Transparent;
-            this.picIcon.Location = new System.Drawing.Point(60, 104);
+            this.picIcon.Location = new System.Drawing.Point(119, 166);
             this.picIcon.Margin = new System.Windows.Forms.Padding(0);
             this.picIcon.Name = "picIcon";
-            this.picIcon.Size = new System.Drawing.Size(306, 271);
+            this.picIcon.Size = new System.Drawing.Size(301, 269);
             this.picIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picIcon.TabIndex = 8;
             this.picIcon.TabStop = false;
@@ -166,7 +168,7 @@
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 28.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(285, 126);
+            this.label4.Location = new System.Drawing.Point(340, 127);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(493, 53);
             this.label4.TabIndex = 25;
@@ -210,7 +212,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Times New Roman", 19.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.MidnightBlue;
-            this.label2.Location = new System.Drawing.Point(468, 190);
+            this.label2.Location = new System.Drawing.Point(468, 240);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(182, 38);
             this.label2.TabIndex = 28;
@@ -222,7 +224,7 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 19.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Indigo;
-            this.label3.Location = new System.Drawing.Point(468, 294);
+            this.label3.Location = new System.Drawing.Point(468, 340);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(264, 38);
             this.label3.TabIndex = 29;
@@ -234,7 +236,7 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Times New Roman", 19.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Indigo;
-            this.label5.Location = new System.Drawing.Point(468, 343);
+            this.label5.Location = new System.Drawing.Point(468, 390);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(162, 38);
             this.label5.TabIndex = 30;
@@ -246,7 +248,7 @@
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Times New Roman", 19.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Indigo;
-            this.label6.Location = new System.Drawing.Point(468, 391);
+            this.label6.Location = new System.Drawing.Point(468, 440);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(127, 38);
             this.label6.TabIndex = 31;
@@ -258,7 +260,7 @@
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Times New Roman", 19.8F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Indigo;
-            this.label7.Location = new System.Drawing.Point(468, 240);
+            this.label7.Location = new System.Drawing.Point(468, 290);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(110, 38);
             this.label7.TabIndex = 32;
@@ -266,7 +268,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1041, 18);
+            this.button1.Location = new System.Drawing.Point(1125, -2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 33;
@@ -278,9 +280,9 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1200, 854);
+            this.ClientSize = new System.Drawing.Size(1200, 600);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -304,10 +306,11 @@
             this.Cursor = System.Windows.Forms.Cursors.SizeAll;
             this.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.MaximumSize = new System.Drawing.Size(1200, 854);
-            this.MinimumSize = new System.Drawing.Size(1200, 854);
+            this.MaximumSize = new System.Drawing.Size(1200, 600);
+            this.MinimumSize = new System.Drawing.Size(1200, 600);
             this.Name = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.TextChanged += new System.EventHandler(this.CityComboBox_SelectedIndexChanged);
             ((System.ComponentModel.ISupportInitialize)(this.picIcon)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

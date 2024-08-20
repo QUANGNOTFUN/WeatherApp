@@ -72,18 +72,20 @@
             // currentDateLabel
             // 
             this.currentDateLabel.AutoSize = true;
+            this.currentDateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.currentDateLabel.Location = new System.Drawing.Point(507, 78);
             this.currentDateLabel.Name = "currentDateLabel";
-            this.currentDateLabel.Size = new System.Drawing.Size(44, 16);
+            this.currentDateLabel.Size = new System.Drawing.Size(79, 29);
             this.currentDateLabel.TabIndex = 9;
             this.currentDateLabel.Text = "label1";
             // 
             // cityNameLabel
             // 
             this.cityNameLabel.AutoSize = true;
+            this.cityNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cityNameLabel.Location = new System.Drawing.Point(507, 30);
             this.cityNameLabel.Name = "cityNameLabel";
-            this.cityNameLabel.Size = new System.Drawing.Size(44, 16);
+            this.cityNameLabel.Size = new System.Drawing.Size(79, 29);
             this.cityNameLabel.TabIndex = 10;
             this.cityNameLabel.Text = "label2";
             // 

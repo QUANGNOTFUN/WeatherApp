@@ -282,33 +282,58 @@ namespace WeatherApp
         // Sự kiện thay đổi kích thước Form, cập nhật vị trí và kích thước các điều khiển
         private void Form2_Resize(object sender, EventArgs e)
         {
-            cityNameLabel.Top = 10; // Đặt vị trí của nhãn tên thành phố (cityNameLabel) cách trên cùng 10 pixel
-            cityNameLabel.Left = (this.ClientSize.Width - cityNameLabel.Width) / 2; // Đặt nhãn tên thành phố ở giữa form
+            cityNameLabel.Top = 10;
+            cityNameLabel.Left = (this.ClientSize.Width - cityNameLabel.Width) / 2;
 
-            currentDateLabel.Top = cityNameLabel.Bottom + 10; // Đặt vị trí của nhãn hiển thị ngày hiện tại (currentDateLabel) cách nhãn tên thành phố 10 pixel
-            currentDateLabel.Left = (this.ClientSize.Width - currentDateLabel.Width) / 2; // Đặt nhãn hiển thị ngày hiện tại ở giữa form
+            currentDateLabel.Top = cityNameLabel.Bottom + 10;
+            currentDateLabel.Left = (this.ClientSize.Width - currentDateLabel.Width) / 2;
 
-            nextDayButton.Top = this.ClientSize.Height - nextDayButton.Height - 50; // Đặt vị trí của nút "Ngày kế tiếp" cách đáy form 50 pixel
-            nextDayButton.Left = this.ClientSize.Width / 2 + 10; // Đặt nút "Ngày kế tiếp" ở bên phải của trung tâm form 10 pixel
+            int buttonWidth = 120; // Đặt kích thước cố định cho các nút
+            int buttonHeight = 40;
 
-            previousDayButton.Top = this.ClientSize.Height - previousDayButton.Height - 50; // Đặt vị trí của nút "Ngày trước" cách đáy form 50 pixel
-            previousDayButton.Left = this.ClientSize.Width / 2 - previousDayButton.Width - 10; // Đặt nút "Ngày trước" ở bên trái của trung tâm form 10 pixel
+            nextDayButton.Size = new Size(buttonWidth, buttonHeight);
+            previousDayButton.Size = new Size(buttonWidth, buttonHeight);
+            backButton.Size = new Size(buttonWidth, buttonHeight);
 
-            backButton.Top = this.ClientSize.Height - backButton.Height - 10; // Đặt vị trí của nút "Trở lại" cách đáy form 10 pixel
-            backButton.Left = (this.ClientSize.Width - backButton.Width) / 2; // Đặt nút "Trở lại" ở giữa form
+            nextDayButton.Top = this.ClientSize.Height - nextDayButton.Height - 20;
+            nextDayButton.Left = this.ClientSize.Width / 2 + 10;
 
-            nextDayButton.Font = new Font("Arial", 12, FontStyle.Bold); // Đặt phông chữ cho nút "Ngày kế tiếp" với kích thước 12 và kiểu chữ đậm
-            previousDayButton.Font = new Font("Arial", 12, FontStyle.Bold); // Đặt phông chữ cho nút "Ngày trước" với kích thước 12 và kiểu chữ đậm
-            backButton.Font = new Font("Arial", 12, FontStyle.Bold); // Đặt phông chữ cho nút "Trở lại" với kích thước 12 và kiểu chữ đậm
+            previousDayButton.Top = this.ClientSize.Height - previousDayButton.Height - 20;
+            previousDayButton.Left = this.ClientSize.Width / 2 - previousDayButton.Width - 10;
 
-            nextDayButton.ForeColor = Color.White; // Đặt màu chữ của nút "Ngày kế tiếp" thành màu trắng
-            previousDayButton.ForeColor = Color.White; // Đặt màu chữ của nút "Ngày trước" thành màu trắng
-            backButton.ForeColor = Color.White; // Đặt màu chữ của nút "Trở lại" thành màu trắng
+            backButton.Top = 10;
+            backButton.Left = 10;
 
-            nextDayButton.BackColor = Color.DodgerBlue; // Đặt màu nền của nút "Ngày kế tiếp" thành màu xanh DodgerBlue
-            previousDayButton.BackColor = Color.DodgerBlue; // Đặt màu nền của nút "Ngày trước" thành màu xanh DodgerBlue
-            backButton.BackColor = Color.DodgerBlue; // Đặt màu nền của nút "Trở lại" thành màu xanh DodgerBlue
+            Font buttonFont = new Font("Arial", 12, FontStyle.Bold);
+
+            nextDayButton.Font = buttonFont;
+            previousDayButton.Font = buttonFont;
+            backButton.Font = buttonFont;
+
+            nextDayButton.ForeColor = Color.White;
+            previousDayButton.ForeColor = Color.White;
+            backButton.ForeColor = Color.White;
+
+            Color buttonColor = Color.DodgerBlue;
+            nextDayButton.BackColor = buttonColor;
+            previousDayButton.BackColor = buttonColor;
+            backButton.BackColor = buttonColor;
+
+            // Thêm hiệu ứng đường viền cho các nút
+            nextDayButton.FlatStyle = FlatStyle.Flat;
+            previousDayButton.FlatStyle = FlatStyle.Flat;
+            backButton.FlatStyle = FlatStyle.Flat;
+
+            nextDayButton.FlatAppearance.BorderSize = 1;
+            previousDayButton.FlatAppearance.BorderSize = 1;
+            backButton.FlatAppearance.BorderSize = 1;
+
+            nextDayButton.FlatAppearance.BorderColor = Color.White;
+            previousDayButton.FlatAppearance.BorderColor = Color.White;
+            backButton.FlatAppearance.BorderColor = Color.White;
         }
+
+
 
         // Xử lý sự kiện khi nhấn nút "Trở lại", đóng Form hiện tại
         private void backButton_Click(object sender, EventArgs e)

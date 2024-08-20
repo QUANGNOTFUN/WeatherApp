@@ -9,6 +9,7 @@ using System.Drawing;
 using System.Linq;
 using System.Threading;
 using System.Drawing.Drawing2D;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ProgressBar;
 
 namespace WeatherApp
 {
@@ -24,8 +25,8 @@ namespace WeatherApp
             // Khởi tạo ComboBox
             cityComboBox = new ComboBox();
             cityComboBox.Location = new Point(458, 52); // Điều chỉnh vị trí theo ý muốn
-            cityComboBox.Size = new Size(224, 24); // Điều chỉnh kích thước theo ý muốn
-            cityComboBox.Font = new Font("Microsoft Sans Serif", 13.8F); // Thiết lập font
+            cityComboBox.Size = new Size(224,35 ); // Điều chỉnh kích thước theo ý muốn
+            cityComboBox.Font = new Font("Microsoft Sans Serif", 14.4F); // Thiết lập font
             this.Controls.Add(cityComboBox);
 
             // Thiết lập tính năng tự động hoàn thành cho ComboBox
@@ -116,6 +117,7 @@ namespace WeatherApp
             timer = new System.Windows.Forms.Timer();
             timer.Interval = 1000; // Cập nhật mỗi giây
             timer.Tick += Timer_Tick;
+            hours.Location = new Point(10, 40);
 
         }
 
@@ -129,6 +131,7 @@ namespace WeatherApp
         private void Timer_Tick(object sender, EventArgs e)
         {
             // Cập nhật giờ trong Label
+            day.Location = new Point(10, 10);
             hours.Text = $"Giờ: {DateTime.Now.ToString("HH:mm:ss")}";
         }
 
@@ -187,6 +190,16 @@ namespace WeatherApp
                                 wind.Text = $"{windSpeed:F1} m/s";
                                 rain.Text = $"Lượng mưa: {rainAmount:F1} mm";
                                 gust.Text = $" {gustSpeed:F1} m/s";
+
+                                // Thiết lập vị trí của các Label
+                                Temp.Location = new Point(300, 390);
+                                Dcr.Location = new Point(120, 390);
+                                humid.Location = new Point(700, 240); // Đặt vị trí cho humid
+                                Prs.Location = new Point(700, 290);   // Đặt vị trí cho Prs
+                                wind.Location = new Point(700, 340);  // Đặt vị trí cho wind
+                                rain.Location = new Point(700, 390);  // Đặt vị trí cho rain
+                                gust.Location = new Point(700, 440);  // Đặt vị trí cho gust
+
 
                                 // Cập nhật ngày và giờ
                                 day.Text = $"Ngày: {DateTime.Now.ToString("dd/MM/yyyy")}";
@@ -261,15 +274,39 @@ namespace WeatherApp
         // Phương thức vẽ gradient background
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
+            // Định nghĩa màu sắc cho gradient nền
+            Color topLeftColor = Color.FromArgb(245, 42, 42); // Màu vàng ở góc trên bên trái
+            Color middleColor = Color.FromArgb(237, 192, 44);     // Màu trung gian
+            Color bottomRightColor = Color.FromArgb(252, 228, 150); // Màu ở góc dưới bên phải
+
+            // Vẽ phần tư hình tròn màu vàng ở góc trên bên trái
+            int sunRadius = 150; // Bán kính của phần tư hình tròn
+            Rectangle sunRect = new Rectangle(0, 0, sunRadius * 2, sunRadius * 2);
+            using (SolidBrush sunBrush = new SolidBrush(topLeftColor))
+            {
+                e.Graphics.FillPie(sunBrush, sunRect, 0, 90); // Vẽ phần tư hình tròn
+            }
+
+            // Tạo LinearGradientBrush cho gradient nền
             using (LinearGradientBrush brush = new LinearGradientBrush(
                 this.ClientRectangle,
-                Color.LightSkyBlue, // Màu bắt đầu gradient
-                Color.SkyBlue,     // Màu kết thúc gradient
-                LinearGradientMode.Vertical))
+                topLeftColor,
+                bottomRightColor,
+                LinearGradientMode.ForwardDiagonal))
             {
+                // Tạo một blend để sử dụng màu trung gian
+                Blend blend = new Blend
+                {
+                    Factors = new float[] { 0.0f, 0.6f, 1.0f }, // Tỷ lệ màu sắc
+                    Positions = new float[] { 0.0f, 0.3f, 1.0f } // Vị trí của các màu
+                };
+                brush.Blend = blend;
                 e.Graphics.FillRectangle(brush, this.ClientRectangle);
             }
         }
+
+
+
 
         private void button1_Click(object sender, EventArgs e)
         {
