@@ -116,6 +116,7 @@ namespace WeatherApp
             timer = new System.Windows.Forms.Timer();
             timer.Interval = 1000; // Cập nhật mỗi giây
             timer.Tick += Timer_Tick;
+            hours.Location = new Point(10, 40);
 
         }
 
@@ -129,6 +130,7 @@ namespace WeatherApp
         private void Timer_Tick(object sender, EventArgs e)
         {
             // Cập nhật giờ trong Label
+            day.Location = new Point(10, 10);
             hours.Text = $"Giờ: {DateTime.Now.ToString("HH:mm:ss")}";
         }
 
@@ -188,6 +190,7 @@ namespace WeatherApp
                                 rain.Text = $"Lượng mưa: {rainAmount:F1} mm";
                                 gust.Text = $" {gustSpeed:F1} m/s";
 
+                               
                                 // Cập nhật ngày và giờ
                                 day.Text = $"Ngày: {DateTime.Now.ToString("dd/MM/yyyy")}";
                                 timer.Start(); // Bắt đầu Timer
