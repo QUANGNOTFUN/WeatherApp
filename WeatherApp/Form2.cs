@@ -157,7 +157,7 @@ namespace WeatherApp
                         JObject forecastData = JObject.Parse(responseBody);
                         JArray forecastList = (JArray)forecastData["list"];
 
-                        int panelTop = 60;
+                        int panelTop = 150;
                         int panelLeft = 20;
                         int panelWidth = (this.ClientSize.Width / 4) - 30;
                         int panelHeight = 200;
@@ -315,5 +315,6 @@ namespace WeatherApp
         {
             this.Close();
         }
+
     }
 }
