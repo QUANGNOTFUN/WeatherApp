@@ -22,11 +22,22 @@ namespace WeatherApp
         public Form1()
         {
             InitializeComponent();
+
+            // Đổi font chữ cho toàn bộ form mà không đổi FontWeight
+            foreach (Control control in this.Controls)
+            {
+                control.Font = new Font("Tahoma", control.Font.Size, control.Font.Style);
+            }
+
             // Khởi tạo ComboBox
-            cityComboBox = new ComboBox();
-            cityComboBox.Location = new Point(458, 52); // Điều chỉnh vị trí theo ý muốn
-            cityComboBox.Size = new Size(224,35 ); // Điều chỉnh kích thước theo ý muốn
-            cityComboBox.Font = new Font("Microsoft Sans Serif", 14.4F); // Thiết lập font
+            cityComboBox = new ComboBox
+            {
+                Location = new Point(458, 52), // Điều chỉnh vị trí theo ý muốn
+                Size = new Size(250, 40), // Điều chỉnh kích thước theo ý muốn
+                Font = new Font("Microsoft Sans Serif", 14.4F),
+                ForeColor = Color.FromArgb(33, 150, 243),
+                BackColor = Color.FromArgb(248, 248, 248)
+            };
             this.Controls.Add(cityComboBox);
 
             // Thiết lập tính năng tự động hoàn thành cho ComboBox
@@ -42,6 +53,9 @@ namespace WeatherApp
             // Đăng ký sự kiện Paint để vẽ gradient background
             this.Paint += Form1_Paint;
         }
+
+        // combo box
+
 
         private async void searchButton_Click(object sender, EventArgs e)
         {
@@ -87,9 +101,10 @@ namespace WeatherApp
             {"snow", "Tuyết"},
             {"mist", "Sương mù"},
             {"light rain", "Mưa nhẹ"},
+            {"moderate rain", "Mưa vừa"},
             {"overcast clouds", "Mây u ám"}
-            // Thêm các mô tả khác nếu cần
         };
+
 
         private string[] cities = new string[]
         {
@@ -108,17 +123,63 @@ namespace WeatherApp
             "Vĩnh Long", "Vĩnh Phúc", "Yên Bái"
         };
 
-        private void Form1_Load(object sender, EventArgs e)
+        private async void Form1_Load(object sender, EventArgs e)
         {
+            // Khởi tạo Timer
+            Create_DayAndHours();
+
             // Khởi tạo danh sách ban đầu cho ComboBox
             cityComboBox.Items.AddRange(cities);
 
-            // Khởi tạo Timer
-            timer = new System.Windows.Forms.Timer();
-            timer.Interval = 1000; // Cập nhật mỗi giây
-            timer.Tick += Timer_Tick;
-            hours.Location = new Point(10, 40);
+                // Gọi phương thức để tìm kiếm thời tiết cho thành phố mặc định
+                await SearchWeatherForDefaultCity();
 
+            // Cập nhật ngày và giờ
+            timer.Start(); // Bắt đầu Timer
+        }
+
+        private async Task SearchWeatherForDefaultCity()
+        {
+            string cityToSearch = cityComboBox.SelectedItem?.ToString();
+
+            // Kiểm tra xem có giá trị thành phố không
+            if (!string.IsNullOrEmpty(cityToSearch))
+            {
+                // Kiểm tra nếu yêu cầu đã bị hủy
+                using (CancellationTokenSource cts = new CancellationTokenSource())
+                {
+                    try
+                    {
+                        await GetWeatherForecast(cityToSearch, cts.Token);
+                    }
+                    catch (OperationCanceledException)
+                    {
+                        MessageBox.Show("Yêu cầu bị hủy.");
+                    }
+                }
+            }
+        }
+
+
+
+        public void Create_DayAndHours()
+        {
+            timer = new System.Windows.Forms.Timer();
+            timer.Tick += Timer_Tick;
+
+            // chỉnh vị trí
+            day.Location = new Point(10, 10);
+            hours.Location = new Point(10, 40);
+            
+            // chỉnh màu
+            day.ForeColor = Color.FromArgb(90, 118, 132);
+            hours.ForeColor = Color.FromArgb(90, 118, 132);
+        }
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            // Cập nhật giờ trong Label
+            day.Text = $"Ngày: {DateTime.Now.ToString("dd/MM/yyyy")}";
+            hours.Text = $"Giờ: {DateTime.Now.ToString("HH:mm:ss")}";
         }
 
         private void CityComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -128,12 +189,29 @@ namespace WeatherApp
 
         }
 
-        private void Timer_Tick(object sender, EventArgs e)
+        // chỉnh màu thuộc tính thời tiết
+        private void SetLabelTextColor(Color color)
         {
-            // Cập nhật giờ trong Label
-            day.Location = new Point(10, 10);
-            hours.Text = $"Giờ: {DateTime.Now.ToString("HH:mm:ss")}";
+            // màu
+            Temp.ForeColor = color;
+            Dcr.ForeColor = color;
+            humid.ForeColor = color;
+            Prs.ForeColor = color;
+            wind.ForeColor = color;
+            rain.ForeColor = color;
+            gust.ForeColor = color;
+            // size
+            int size = 20;
+            Temp.Font = new Font(Temp.Font.FontFamily, size);
+            Dcr.Font = new Font(Dcr.Font.FontFamily, size);
+            humid.Font = new Font(humid.Font.FontFamily, size);
+            Prs.Font = new Font(Prs.Font.FontFamily, size);
+            wind.Font = new Font(wind.Font.FontFamily, size);
+            rain.Font = new Font(rain.Font.FontFamily, size);
+            gust.Font = new Font(gust.Font.FontFamily, size);
+
         }
+
 
         private async Task GetWeatherForecast(string cityName, CancellationToken token)
         {
@@ -184,29 +262,27 @@ namespace WeatherApp
 
                                 // Cập nhật thông tin thời tiết vào Label
                                 Temp.Text = $"{temperature:F1}°C";
-                                Dcr.Text = $" {weatherDescriptionInVietnamese}";
-                                humid.Text = $" {humidity:F1}%";
-                                Prs.Text = $" {pressure} hPa";
+                                Dcr.Text = $"{weatherDescriptionInVietnamese}";
+                                humid.Text = $"{humidity:F1}%";
+                                Prs.Text = $"{pressure} hPa";
                                 wind.Text = $"{windSpeed:F1} m/s";
-                                rain.Text = $"Lượng mưa: {rainAmount:F1} mm";
-                                gust.Text = $" {gustSpeed:F1} m/s";
+                                rain.Text = $"{rainAmount:F1} mm";
+                                gust.Text = $"{gustSpeed:F1} m/s";
+
+                                // Thay đổi màu chữ cho tất cả các Label
+                                SetLabelTextColor(Color.FromArgb(70, 130, 180));
 
                                 // Thiết lập vị trí của các Label
                                 Temp.Location = new Point(300, 390);
                                 Dcr.Location = new Point(120, 390);
-                                humid.Location = new Point(700, 240); // Đặt vị trí cho humid
-                                Prs.Location = new Point(700, 290);   // Đặt vị trí cho Prs
-                                wind.Location = new Point(700, 340);  // Đặt vị trí cho wind
-                                rain.Location = new Point(700, 390);  // Đặt vị trí cho rain
-                                gust.Location = new Point(700, 440);  // Đặt vị trí cho gust
-
-
-                                // Cập nhật ngày và giờ
-                                day.Text = $"Ngày: {DateTime.Now.ToString("dd/MM/yyyy")}";
-                                timer.Start(); // Bắt đầu Timer
+                                humid.Location = new Point(750, 240); // Đặt vị trí cho humid
+                                Prs.Location = new Point(750, 290);   // Đặt vị trí cho Prs
+                                wind.Location = new Point(750, 340);  // Đặt vị trí cho wind
+                                rain.Location = new Point(750, 390);  // Đặt vị trí cho rain
+                                gust.Location = new Point(750, 440);  // Đặt vị trí cho gust
 
                                 // Cập nhật hình ảnh thời tiết
-                                string iconUrl = $"http://openweathermap.org/img/wn/{weatherIconCode}@2x.png";
+                                string iconUrl = $"http://openweathermap.org/img/wn/{weatherIconCode}@4x.png";
                                 using (HttpClient iconClient = new HttpClient())
                                 {
                                     byte[] iconData = await iconClient.GetByteArrayAsync(iconUrl);
@@ -257,25 +333,12 @@ namespace WeatherApp
             }
         }
 
-        private void detailsButton_Click(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(selectedCity))
-            {
-                // Khởi tạo Form2 và truyền tên thành phố
-                Form2 form2 = new Form2(selectedCity);
-                form2.Show();
-            }
-            else
-            {
-                MessageBox.Show("Vui lòng chọn thành phố từ danh sách.");
-            }
-        }
 
         // Phương thức vẽ gradient background
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             // Định nghĩa màu sắc cho gradient nền
-            Color topLeftColor = Color.FromArgb(245, 42, 42); // Màu vàng ở góc trên bên trái
+            Color topLeftColor = Color.FromArgb(255, 140, 66); // Màu vàng ở góc trên bên trái
             Color middleColor = Color.FromArgb(237, 192, 44);     // Màu trung gian
             Color bottomRightColor = Color.FromArgb(252, 228, 150); // Màu ở góc dưới bên phải
 
@@ -305,12 +368,37 @@ namespace WeatherApp
             }
         }
 
-
-
-
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void detailsButton_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(selectedCity))
+            {
+                // Khởi tạo Form2 và truyền tên thành phố
+                Form2 form2 = new Form2(selectedCity);
+                form2.Show();
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn thành phố từ danh sách.");
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(selectedCity))
+            {
+                // Tạo và mở Form3 với danh sách các thành phố lân cận
+                Form3 form3 = new Form3(selectedCity);
+                form3.Show();
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn thành phố từ danh sách.");
+            }
         }
     }
 }

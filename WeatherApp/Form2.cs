@@ -32,8 +32,8 @@ namespace WeatherApp
             {"snow", "Tuyết"},
             {"mist", "Sương mù"},
             {"light rain", "Mưa nhẹ"},
+            {"moderate rain", "Mưa vừa"},
             {"overcast clouds", "Mây u ám"}
-            // Thêm các mô tả khác nếu cần
         };
 
         // Constructor của Form2, khởi tạo các thuộc tính và đăng ký các sự kiện
@@ -213,31 +213,33 @@ namespace WeatherApp
         // Tạo các bảng hiển thị dự báo thời tiết cho từng giờ
         private void CreateWeatherPanelForHour(DateTime forecastTime, double temperature, double humidity, double windSpeed, double pressure, string weatherDescription, string iconCode, ref int panelTop, ref int panelLeft, int panelWidth, int panelHeight)
         {
+            // Create PictureBox for weather icon
             PictureBox weatherIcon = new PictureBox
             {
                 Size = new Size(100, 100),
                 SizeMode = PictureBoxSizeMode.Zoom,
-                ImageLocation = $"https://openweathermap.org/img/wn/{iconCode}@2x.png",
+                ImageLocation = $"https://openweathermap.org/img/wn/{iconCode}@4x.png",
                 BackColor = Color.Transparent
             };
 
+            // Create Label for weather information
             Label weatherInfoLabel = new Label
             {
                 Width = panelWidth - 20,
-                Height = 100,
+                AutoSize = true,
                 Margin = new Padding(4),
+                Padding = new Padding(4),
                 Text = $"{forecastTime:HH:mm}\nNhiệt độ: {temperature:F1}°C\nĐộ ẩm: {humidity}%\nGió: {windSpeed} m/s\nÁp suất: {pressure} hPa\nMô tả: {weatherDescription}",
-                TextAlign = ContentAlignment.MiddleCenter,
+                TextAlign = ContentAlignment.MiddleLeft,
                 BackColor = Color.Transparent,
-                ForeColor = Color.DarkBlue,
-                Font = new Font("Arial", 10, FontStyle.Bold)
+                ForeColor = Color.FromArgb(75, 75, 75),
+                Font = new Font("Tahoma", 14, FontStyle.Bold)
             };
 
             Panel hourPanel = new Panel
             {
                 Width = panelWidth,
                 Height = panelHeight,
-                AutoSize = true,
                 Margin = new Padding(10),
                 BorderStyle = BorderStyle.None,
                 BackColor = Color.Transparent,
@@ -246,13 +248,13 @@ namespace WeatherApp
                 Left = panelLeft
             };
 
-            hourPanel.Controls.Add(weatherIcon);
             hourPanel.Controls.Add(weatherInfoLabel);
+            hourPanel.Controls.Add(weatherIcon);
 
+            weatherInfoLabel.Top = 20;
+            weatherInfoLabel.Left = 100;
             weatherIcon.Top = 10;
-            weatherIcon.Left = (hourPanel.Width - weatherIcon.Width) / 2;
-            weatherInfoLabel.Top = weatherIcon.Bottom + 10;
-            weatherInfoLabel.Left = 10;
+            weatherIcon.Left = 5;
 
             this.Controls.Add(hourPanel);
 
@@ -270,7 +272,7 @@ namespace WeatherApp
         private void Form2_Paint(object sender, PaintEventArgs e)
         {
             // Định nghĩa màu sắc cho gradient nền
-            Color topLeftColor = Color.FromArgb(245, 42, 42); // Màu vàng ở góc trên bên trái
+            Color topLeftColor = Color.FromArgb(255, 140, 66); // Màu vàng ở góc trên bên trái
             Color middleColor = Color.FromArgb(237, 192, 44);     // Màu trung gian
             Color bottomRightColor = Color.FromArgb(252, 228, 150); // Màu ở góc dưới bên phải
 
@@ -326,37 +328,6 @@ namespace WeatherApp
             backButton.Top = 10;
             backButton.Left = 10;
 
-            Font buttonFont = new Font("Arial", 12, FontStyle.Bold);
-
-            nextDayButton.Font = buttonFont;
-            previousDayButton.Font = buttonFont;
-            backButton.Font = buttonFont;
-
-            // Đặt màu sắc cho các nút để phù hợp với nền
-            Color buttonColor = Color.FromArgb(252, 186, 3); // Màu vàng cam tương phản với nền
-            Color borderColor = Color.FromArgb(245, 42, 42); // Màu đỏ tương phản với nút và nền
-            Color textColor = Color.White;
-
-            nextDayButton.ForeColor = textColor;
-            previousDayButton.ForeColor = textColor;
-            backButton.ForeColor = textColor;
-
-            nextDayButton.BackColor = buttonColor;
-            previousDayButton.BackColor = buttonColor;
-            backButton.BackColor = buttonColor;
-
-            // Thêm hiệu ứng đường viền cho các nút
-            nextDayButton.FlatStyle = FlatStyle.Flat;
-            previousDayButton.FlatStyle = FlatStyle.Flat;
-            backButton.FlatStyle = FlatStyle.Flat;
-
-            nextDayButton.FlatAppearance.BorderSize = 2;
-            previousDayButton.FlatAppearance.BorderSize = 2;
-            backButton.FlatAppearance.BorderSize = 2;
-
-            nextDayButton.FlatAppearance.BorderColor = borderColor;
-            previousDayButton.FlatAppearance.BorderColor = borderColor;
-            backButton.FlatAppearance.BorderColor = borderColor;
         }
 
 
