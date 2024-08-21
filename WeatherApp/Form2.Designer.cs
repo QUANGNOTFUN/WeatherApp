@@ -38,54 +38,70 @@
             // 
             // previousDayButton
             // 
-            this.previousDayButton.Location = new System.Drawing.Point(245, 78);
-            this.previousDayButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.previousDayButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(179)))), ((int)(((byte)(71)))));
+            this.previousDayButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.previousDayButton.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.previousDayButton.ForeColor = System.Drawing.Color.White;
+            this.previousDayButton.Location = new System.Drawing.Point(337, 117);
+            this.previousDayButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.previousDayButton.Name = "previousDayButton";
-            this.previousDayButton.Size = new System.Drawing.Size(75, 23);
+            this.previousDayButton.Size = new System.Drawing.Size(103, 48);
             this.previousDayButton.TabIndex = 0;
             this.previousDayButton.Text = "Pre day";
-            this.previousDayButton.UseVisualStyleBackColor = true;
+            this.previousDayButton.UseVisualStyleBackColor = false;
             this.previousDayButton.Click += new System.EventHandler(this.previousDayButton_Click);
             // 
             // nextDayButton
             // 
-            this.nextDayButton.Location = new System.Drawing.Point(649, 78);
-            this.nextDayButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.nextDayButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(179)))), ((int)(((byte)(71)))));
+            this.nextDayButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.nextDayButton.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nextDayButton.ForeColor = System.Drawing.Color.White;
+            this.nextDayButton.Location = new System.Drawing.Point(892, 117);
+            this.nextDayButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.nextDayButton.Name = "nextDayButton";
-            this.nextDayButton.Size = new System.Drawing.Size(75, 23);
+            this.nextDayButton.Size = new System.Drawing.Size(103, 48);
             this.nextDayButton.TabIndex = 1;
             this.nextDayButton.Text = "Next day";
-            this.nextDayButton.UseVisualStyleBackColor = true;
+            this.nextDayButton.UseVisualStyleBackColor = false;
             this.nextDayButton.Click += new System.EventHandler(this.nextDayButton_Click);
             // 
             // backButton
             // 
-            this.backButton.Location = new System.Drawing.Point(31, 23);
-            this.backButton.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.backButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(179)))), ((int)(((byte)(71)))));
+            this.backButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.backButton.Font = new System.Drawing.Font("Tahoma", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.backButton.ForeColor = System.Drawing.Color.White;
+            this.backButton.Location = new System.Drawing.Point(43, 34);
+            this.backButton.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.backButton.Name = "backButton";
-            this.backButton.Size = new System.Drawing.Size(75, 23);
+            this.backButton.Size = new System.Drawing.Size(103, 48);
             this.backButton.TabIndex = 6;
             this.backButton.Text = "Back";
-            this.backButton.UseVisualStyleBackColor = true;
+            this.backButton.UseVisualStyleBackColor = false;
             this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
             // currentDateLabel
             // 
             this.currentDateLabel.AutoSize = true;
-            this.currentDateLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.currentDateLabel.Location = new System.Drawing.Point(507, 78);
+            this.currentDateLabel.BackColor = System.Drawing.Color.Transparent;
+            this.currentDateLabel.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.currentDateLabel.Location = new System.Drawing.Point(697, 117);
+            this.currentDateLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.currentDateLabel.Name = "currentDateLabel";
-            this.currentDateLabel.Size = new System.Drawing.Size(79, 29);
+            this.currentDateLabel.Size = new System.Drawing.Size(142, 48);
             this.currentDateLabel.TabIndex = 9;
             this.currentDateLabel.Text = "label1";
             // 
             // cityNameLabel
             // 
             this.cityNameLabel.AutoSize = true;
-            this.cityNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cityNameLabel.Location = new System.Drawing.Point(507, 30);
+            this.cityNameLabel.BackColor = System.Drawing.Color.Transparent;
+            this.cityNameLabel.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cityNameLabel.Location = new System.Drawing.Point(697, 45);
+            this.cityNameLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.cityNameLabel.Name = "cityNameLabel";
-            this.cityNameLabel.Size = new System.Drawing.Size(79, 29);
+            this.cityNameLabel.Size = new System.Drawing.Size(142, 48);
             this.cityNameLabel.TabIndex = 10;
             this.cityNameLabel.Text = "label2";
             // 
@@ -94,26 +110,27 @@
             this.weatherFlowLayoutPanel.BackColor = System.Drawing.Color.White;
             this.weatherFlowLayoutPanel.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.weatherFlowLayoutPanel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.weatherFlowLayoutPanel.Location = new System.Drawing.Point(83, 355);
+            this.weatherFlowLayoutPanel.Location = new System.Drawing.Point(114, 532);
             this.weatherFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(0);
             this.weatherFlowLayoutPanel.Name = "weatherFlowLayoutPanel";
-            this.weatherFlowLayoutPanel.Size = new System.Drawing.Size(834, 215);
+            this.weatherFlowLayoutPanel.Size = new System.Drawing.Size(1147, 322);
             this.weatherFlowLayoutPanel.TabIndex = 12;
             this.weatherFlowLayoutPanel.WrapContents = false;
             // 
             // Form2
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1044, 629);
+            this.ClientSize = new System.Drawing.Size(1436, 944);
             this.Controls.Add(this.weatherFlowLayoutPanel);
             this.Controls.Add(this.cityNameLabel);
             this.Controls.Add(this.currentDateLabel);
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.nextDayButton);
             this.Controls.Add(this.previousDayButton);
-            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "Form2";
             this.Text = "Form2";
             this.Load += new System.EventHandler(this.Form2_Load);
