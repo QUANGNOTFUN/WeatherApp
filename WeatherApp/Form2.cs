@@ -269,46 +269,98 @@ namespace WeatherApp
         // Sự kiện vẽ nền gradient cho Form
         private void Form2_Paint(object sender, PaintEventArgs e)
         {
+            // Định nghĩa màu sắc cho gradient nền
+            Color topLeftColor = Color.FromArgb(245, 42, 42); // Màu vàng ở góc trên bên trái
+            Color middleColor = Color.FromArgb(237, 192, 44);     // Màu trung gian
+            Color bottomRightColor = Color.FromArgb(252, 228, 150); // Màu ở góc dưới bên phải
+
+            // Vẽ phần tư hình tròn màu vàng ở góc trên bên trái
+            int sunRadius = 150; // Bán kính của phần tư hình tròn
+            Rectangle sunRect = new Rectangle(0, 0, sunRadius * 2, sunRadius * 2);
+            using (SolidBrush sunBrush = new SolidBrush(topLeftColor))
+            {
+                e.Graphics.FillPie(sunBrush, sunRect, 0, 90); // Vẽ phần tư hình tròn
+            }
+
+            // Tạo LinearGradientBrush cho gradient nền
             using (LinearGradientBrush brush = new LinearGradientBrush(
                 this.ClientRectangle,
-                Color.LightSkyBlue,
-                Color.LightSteelBlue,
-                LinearGradientMode.BackwardDiagonal))
+                topLeftColor,
+                bottomRightColor,
+                LinearGradientMode.ForwardDiagonal))
             {
+                // Tạo một blend để sử dụng màu trung gian
+                Blend blend = new Blend
+                {
+                    Factors = new float[] { 0.0f, 0.6f, 1.0f }, // Tỷ lệ màu sắc
+                    Positions = new float[] { 0.0f, 0.3f, 1.0f } // Vị trí của các màu
+                };
+                brush.Blend = blend;
                 e.Graphics.FillRectangle(brush, this.ClientRectangle);
             }
         }
 
+
         // Sự kiện thay đổi kích thước Form, cập nhật vị trí và kích thước các điều khiển
         private void Form2_Resize(object sender, EventArgs e)
         {
-            cityNameLabel.Top = 10; // Đặt vị trí của nhãn tên thành phố (cityNameLabel) cách trên cùng 10 pixel
-            cityNameLabel.Left = (this.ClientSize.Width - cityNameLabel.Width) / 2; // Đặt nhãn tên thành phố ở giữa form
+            cityNameLabel.Top = 10;
+            cityNameLabel.Left = (this.ClientSize.Width - cityNameLabel.Width) / 2;
 
-            currentDateLabel.Top = cityNameLabel.Bottom + 10; // Đặt vị trí của nhãn hiển thị ngày hiện tại (currentDateLabel) cách nhãn tên thành phố 10 pixel
-            currentDateLabel.Left = (this.ClientSize.Width - currentDateLabel.Width) / 2; // Đặt nhãn hiển thị ngày hiện tại ở giữa form
+            currentDateLabel.Top = cityNameLabel.Bottom + 10;
+            currentDateLabel.Left = (this.ClientSize.Width - currentDateLabel.Width) / 2;
 
-            nextDayButton.Top = this.ClientSize.Height - nextDayButton.Height - 50; // Đặt vị trí của nút "Ngày kế tiếp" cách đáy form 50 pixel
-            nextDayButton.Left = this.ClientSize.Width / 2 + 10; // Đặt nút "Ngày kế tiếp" ở bên phải của trung tâm form 10 pixel
+            int buttonWidth = 120; // Đặt kích thước cố định cho các nút
+            int buttonHeight = 40;
 
-            previousDayButton.Top = this.ClientSize.Height - previousDayButton.Height - 50; // Đặt vị trí của nút "Ngày trước" cách đáy form 50 pixel
-            previousDayButton.Left = this.ClientSize.Width / 2 - previousDayButton.Width - 10; // Đặt nút "Ngày trước" ở bên trái của trung tâm form 10 pixel
+            nextDayButton.Size = new Size(buttonWidth, buttonHeight);
+            previousDayButton.Size = new Size(buttonWidth, buttonHeight);
+            backButton.Size = new Size(buttonWidth, buttonHeight);
 
-            backButton.Top = this.ClientSize.Height - backButton.Height - 10; // Đặt vị trí của nút "Trở lại" cách đáy form 10 pixel
-            backButton.Left = (this.ClientSize.Width - backButton.Width) / 2; // Đặt nút "Trở lại" ở giữa form
+            nextDayButton.Top = this.ClientSize.Height - nextDayButton.Height - 20;
+            nextDayButton.Left = this.ClientSize.Width / 2 + 10;
 
-            nextDayButton.Font = new Font("Arial", 12, FontStyle.Bold); // Đặt phông chữ cho nút "Ngày kế tiếp" với kích thước 12 và kiểu chữ đậm
-            previousDayButton.Font = new Font("Arial", 12, FontStyle.Bold); // Đặt phông chữ cho nút "Ngày trước" với kích thước 12 và kiểu chữ đậm
-            backButton.Font = new Font("Arial", 12, FontStyle.Bold); // Đặt phông chữ cho nút "Trở lại" với kích thước 12 và kiểu chữ đậm
+            previousDayButton.Top = this.ClientSize.Height - previousDayButton.Height - 20;
+            previousDayButton.Left = this.ClientSize.Width / 2 - previousDayButton.Width - 10;
 
-            nextDayButton.ForeColor = Color.White; // Đặt màu chữ của nút "Ngày kế tiếp" thành màu trắng
-            previousDayButton.ForeColor = Color.White; // Đặt màu chữ của nút "Ngày trước" thành màu trắng
-            backButton.ForeColor = Color.White; // Đặt màu chữ của nút "Trở lại" thành màu trắng
+            backButton.Top = 10;
+            backButton.Left = 10;
 
-            nextDayButton.BackColor = Color.DodgerBlue; // Đặt màu nền của nút "Ngày kế tiếp" thành màu xanh DodgerBlue
-            previousDayButton.BackColor = Color.DodgerBlue; // Đặt màu nền của nút "Ngày trước" thành màu xanh DodgerBlue
-            backButton.BackColor = Color.DodgerBlue; // Đặt màu nền của nút "Trở lại" thành màu xanh DodgerBlue
+            Font buttonFont = new Font("Arial", 12, FontStyle.Bold);
+
+            nextDayButton.Font = buttonFont;
+            previousDayButton.Font = buttonFont;
+            backButton.Font = buttonFont;
+
+            // Đặt màu sắc cho các nút để phù hợp với nền
+            Color buttonColor = Color.FromArgb(252, 186, 3); // Màu vàng cam tương phản với nền
+            Color borderColor = Color.FromArgb(245, 42, 42); // Màu đỏ tương phản với nút và nền
+            Color textColor = Color.White;
+
+            nextDayButton.ForeColor = textColor;
+            previousDayButton.ForeColor = textColor;
+            backButton.ForeColor = textColor;
+
+            nextDayButton.BackColor = buttonColor;
+            previousDayButton.BackColor = buttonColor;
+            backButton.BackColor = buttonColor;
+
+            // Thêm hiệu ứng đường viền cho các nút
+            nextDayButton.FlatStyle = FlatStyle.Flat;
+            previousDayButton.FlatStyle = FlatStyle.Flat;
+            backButton.FlatStyle = FlatStyle.Flat;
+
+            nextDayButton.FlatAppearance.BorderSize = 2;
+            previousDayButton.FlatAppearance.BorderSize = 2;
+            backButton.FlatAppearance.BorderSize = 2;
+
+            nextDayButton.FlatAppearance.BorderColor = borderColor;
+            previousDayButton.FlatAppearance.BorderColor = borderColor;
+            backButton.FlatAppearance.BorderColor = borderColor;
         }
+
+
+
 
         // Xử lý sự kiện khi nhấn nút "Trở lại", đóng Form hiện tại
         private void backButton_Click(object sender, EventArgs e)
